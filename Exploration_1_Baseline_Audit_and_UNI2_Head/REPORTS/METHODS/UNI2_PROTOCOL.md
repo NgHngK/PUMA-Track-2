@@ -1,0 +1,11 @@
+# Prospective UNI2 checkpoint amendment
+
+Before any feature extraction or class performance measurement, the supplied UNI2-h checkpoint was verified. It has verified 1536-d CLS, eight register tokens, and 14-pixel patch embedding. Original-UNI H3 is superseded by actual UNI2-h screening.
+
+Freeze the existing ROI development split from manifest.csv. For CPU feasibility select at most two nuclei per class per ROI, uniformly without replacement using seed 17, then add four uniformly random remaining nuclei per ROI. Selection is label-enriched in BOTH train and validation: resulting F1 is a screening metric under this altered distribution, not a natural-population estimate. Report sample supports, groups and selection method. Natural sampling in a selected dataset means its actual selected frequencies, not the original census priors.
+
+Use 96-source-pixel crop resized to 224, RGB ImageNet normalization, frozen UNI2-h CLS followed by parameter-free layer normalization and a linear 1536->10 head. Ten epochs each, AdamW head LR .001, weight decay .01, batch64, seed17. Three matched comparisons: natural CE, natural adjusted CE tau1, balanced sampler CE. Save raw logits and per-class positive-example head gradient norms at each epoch. Repeat chosen recipe with seeds29 and43 only after the first comparison; report all runs, not just the best.
+
+No FOV or LoRA superiority claim from this single-FOV frozen probe. CPU extraction runtime is measured first; if all selected data cannot run practically, reduce the number per ROI prospectively and log before processing. Full-LoRA 5-10 epoch validation is conditional on measured compute feasibility. Tiny-module LoRA tests are unit checks only.
+
+Runtime amendment BEFORE feature extraction: measured warm CPU forward 6.84 seconds/image. Reduce to at most 12 train and 6 validation nuclei per class, spreading choices across ROIs first, plus 100 train and 50 validation random remaining nuclei. Expected at most 330 images (~38 minutes at measured singleton throughput). This deliberately enriched pilot is not sufficient for a definitive tail-class or SOTA claim. CNN control remains the larger uniform 100/ROI sample. All selected IDs are locked before feature computation.

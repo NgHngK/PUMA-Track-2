@@ -1,0 +1,3 @@
+# Development replication protocol
+
+After seed17 frozen UNI2 pilot: LA best Macro-F1 .4497 versus CE .4416; the difference is too small to claim superiority. Before observing any additional seeds, repeat all three same ten-epoch recipes at seeds29 and43 on the identical features and split. Keep seed17 logs. Report both best-epoch and final-epoch mean/std; primary descriptive paired comparison uses each recipe's development-selected checkpoint and must be marked selection-biased/exploratory. Bootstrap validation ROIs, not individual nuclei, with 2000 replicates and seed17; compute paired LA-minus-CE deltas. No stopping on a favorable replicate, no new hyperparameters, no test-set claim.

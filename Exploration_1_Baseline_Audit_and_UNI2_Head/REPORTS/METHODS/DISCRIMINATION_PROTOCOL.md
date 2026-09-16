@@ -1,0 +1,3 @@
+# Exploratory discrimination diagnostic
+
+After observing zero apoptosis recall in seed17 best UNI2 checkpoints, inspect frozen features using training-only class centroids and cosine nearest-neighbour classifiers (k=1 and5). No feature re-extraction, learned branches or validation-fitted bias. These are exploratory diagnostics selected after the original result. They distinguish whether an alternate simple boundary can retrieve any apoptosis examples, not prove a representation bottleneck. Evaluate the identical enriched validation sample. Also report per-class average precision and each model's predominant confusion at the saved seed17 best checkpoint. No deployment promotion or hypothesis-test claim.
