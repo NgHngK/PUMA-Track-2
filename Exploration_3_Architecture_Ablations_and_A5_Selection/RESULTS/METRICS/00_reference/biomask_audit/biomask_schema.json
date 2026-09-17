@@ -1,0 +1,28 @@
+{
+  "input": "RGB [0,1] + Gaussian prompt sigma2.5; 96 source pixels; reflect padding and valid mask",
+  "internal_channels": [
+    "R",
+    "G",
+    "B",
+    "H proxy",
+    "forward H gradient",
+    "prompt"
+  ],
+  "base_channels": 32,
+  "outputs": [
+    "mask_logits",
+    "presence_logits",
+    "quality_logits",
+    "center_offset",
+    "presence_local_support"
+  ],
+  "offset_range": [
+    -24,
+    24
+  ],
+  "GT_class_input": false,
+  "training_loss": ".52*(instance(.6 BCE+.4 softDice)+.25 emptyBCE)+.23 presenceBCE+.17 smoothL1offset+.08 qualityBCE",
+  "mask_quality_target": "current hard-mask IoU against GT; diagnostic supervision only",
+  "selected_checkpoint": "final epoch30",
+  "downstream_status": "exploratory contaminated upstream features only; never promotion eligible"
+}

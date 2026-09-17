@@ -1,0 +1,110 @@
+{
+  "epoch": 29,
+  "fold": 1,
+  "training_folds": [
+    0,
+    2,
+    3,
+    4
+  ],
+  "oof_safe": true,
+  "training_signature": {
+    "training_folds": [
+      0,
+      2,
+      3,
+      4
+    ],
+    "preprocess": {
+      "association_radius_pixels": 15.0,
+      "biological_supervision_radius_pixels": 20.0,
+      "crop_size": 96,
+      "identity_view_size": 64,
+      "uni2_view_sizes": [
+        64,
+        128,
+        256
+      ],
+      "uni2_micro_batch_size": 12,
+      "uni2_use_bfloat16": true,
+      "feature_dtype": "float16",
+      "biomask_epochs": 30,
+      "biomask_batch_size": 128,
+      "biomask_learning_rate": 0.0003,
+      "biomask_minimum_learning_rate": 2e-06,
+      "biomask_weight_decay": 0.0001,
+      "biomask_base_channels": 32,
+      "biomask_crop_shift_pixels": 8,
+      "biomask_d4_probability": 0.875,
+      "biomask_prompt_sigma_pixels": 2.5,
+      "biomask_presence_sigma_pixels": 9.0,
+      "biomask_presence_support_radius_pixels": 22.0,
+      "biomask_instance_margin_pixels": 3.0,
+      "biomask_boundary_ramp_pixels": 2.0,
+      "biomask_boundary_min_weight": 0.25,
+      "biomask_empty_mask_loss_weight": 0.25,
+      "biomask_positive_visibility_retained_min": 0.8,
+      "biomask_ambiguous_visibility_retained_min": 0.55,
+      "biomask_crop_shift_attempts": 6,
+      "biomask_ambiguous_shift_scale": 0.5,
+      "biomask_negative_near_outer_radius_pixels": 28.0,
+      "biomask_negative_crowded_min_nuclei": 2,
+      "biomask_negative_high_score_quantile": 0.8,
+      "biomask_negative_sampling_fractions": [
+        0.3,
+        0.3,
+        0.25,
+        0.15
+      ],
+      "biomask_max_importance_weight": 4.0,
+      "resolver_quality_threshold": 0.65,
+      "resolver_margin_threshold": 0.2,
+      "resolver_geometry_weight": 0.25,
+      "resolver_minimum_mask_support": 6.0,
+      "cpu_crop_workers": 8
+    },
+    "runtime": {
+      "use_bfloat16": true,
+      "allow_tf32": true,
+      "deterministic": false
+    },
+    "code_fingerprint": "4ae9f1386efa4173b28b08a3b0130266afb87cc1234ed97187608bfdd2878f18"
+  },
+  "sampling": {
+    "negative_count": 8368,
+    "positive_count": 100521,
+    "high_score_cutoff": 0.42250463366508484,
+    "natural_counts": [
+      3739,
+      2616,
+      433,
+      1580
+    ],
+    "natural_probabilities": [
+      0.446821223709369,
+      0.31261950286806883,
+      0.05174474187380497,
+      0.18881453154875716
+    ],
+    "planned_counts": [
+      2511,
+      2510,
+      2092,
+      1255
+    ],
+    "planned_probabilities": [
+      0.3000717017208413,
+      0.29995219885277247,
+      0.25,
+      0.14997609942638623
+    ],
+    "importance_weights": [
+      1.4890481879729192,
+      1.042231075697211,
+      0.20697896749521988,
+      1.2589641434262948
+    ],
+    "oversampling_strength": 1.0,
+    "maximum_importance_weight": 1.4890481879729192
+  }
+}

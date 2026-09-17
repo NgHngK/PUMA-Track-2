@@ -1,0 +1,51 @@
+{
+  "schema": "oof-biomask-v2",
+  "proposal_count": 109637,
+  "proposal_sha256": "920b2db07ed710a78816a0fa403bc080f8893a25ead736fb085585a8babf7162",
+  "target_sha256": "e3e5c33c0f72b601714ed070809be4bd5a5c5da63fc1c6d161511eb179c3f7ac",
+  "number_of_folds": 5,
+  "crop_size": 96,
+  "feature_dtype": "float16",
+  "biology_dim": 20,
+  "reliability_dim": 10,
+  "base_channels": 32,
+  "presence_sigma_pixels": 9.0,
+  "presence_support_radius_pixels": 22.0,
+  "biomask_settings": {
+    "biomask_epochs": 30,
+    "biomask_batch_size": 128,
+    "biomask_learning_rate": 0.0003,
+    "biomask_minimum_learning_rate": 2e-06,
+    "biomask_weight_decay": 0.0001,
+    "biomask_base_channels": 32,
+    "biomask_crop_shift_pixels": 8,
+    "biomask_d4_probability": 0.875,
+    "biomask_prompt_sigma_pixels": 2.5,
+    "biomask_presence_sigma_pixels": 9.0,
+    "biomask_presence_support_radius_pixels": 22.0,
+    "biomask_instance_margin_pixels": 3.0,
+    "biomask_boundary_ramp_pixels": 2.0,
+    "biomask_boundary_min_weight": 0.25,
+    "biomask_empty_mask_loss_weight": 0.25,
+    "biomask_positive_visibility_retained_min": 0.8,
+    "biomask_ambiguous_visibility_retained_min": 0.55,
+    "biomask_crop_shift_attempts": 6,
+    "biomask_ambiguous_shift_scale": 0.5,
+    "biomask_negative_near_outer_radius_pixels": 28.0,
+    "biomask_negative_crowded_min_nuclei": 2,
+    "biomask_negative_high_score_quantile": 0.8,
+    "biomask_negative_sampling_fractions": [
+      0.3,
+      0.3,
+      0.25,
+      0.15
+    ],
+    "biomask_max_importance_weight": 4.0
+  },
+  "runtime": {
+    "use_bfloat16": true,
+    "allow_tf32": true,
+    "deterministic": false
+  },
+  "contract_fingerprint": "6e31b329af0eb7c0b8ddace9941bb4cdfe7e4acc32d5b53aa00d31834016d252"
+}

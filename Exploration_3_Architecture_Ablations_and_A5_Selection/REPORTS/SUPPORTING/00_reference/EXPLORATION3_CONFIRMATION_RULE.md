@@ -1,0 +1,3 @@
+# Confirmation rule clarified before executing confirmation
+
+Internal CV selected A5 only. Reuse the original A1 final-epoch10 predictions, not its best checkpoints, for matched comparison. Fit A5 for10 epochs on original300 with seeds17/29/43 and evaluate original150 once per seed (the generic runner logs epochs; these interim metrics must not be used for reselection). Retain A5 only with mean ROI-F1 delta≥.003, positive delta in at least2/3 seeds and no class mean recall drop>.10. Otherwise retain A1 and do not test a runner-up. Report paired ROI uncertainty regardless; the current150 has already been used in Exploration2 and is not independent external confirmation. All internal CV controls remain necessary; no additional architecture is opened here.
