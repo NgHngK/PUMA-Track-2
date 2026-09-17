@@ -1,0 +1,11 @@
+from bootstrap import *
+from engine import P
+from compare import roi_vector
+import numpy as np
+scores=[];deltas=[];rd=[];rc=[];gaps=[];evidence=[]
+for seed in [17,29,43]:
+ a=json.loads((P/f'LORA/E1_s{seed}/complete.json').read_text())['selected'];b=json.loads((P/f'RUNS/E0_FROZEN_s{seed}/summary.json').read_text())['selected'];delta=a['val']['puma']['fixed10']['macro_f1']-b['val']['puma']['fixed10']['macro_f1'];deltas.append(delta);rd.append(roi_vector(a['val'])-roi_vector(b['val']));rc.append(np.array(a['val']['recall'])-np.array(b['val']['recall']));gaps.append(a['gap']-b['gap'])
+ for family,r in [('LoRA',a),('frozen',b)]:scores.append({'seed':seed,'family':family,'epoch':5,'ROI_F1':r['val']['puma']['fixed10']['macro_f1'],'semantic_F1':r['val']['macro_f1'],'NLL':r['val']['nll'],'ECE15':r['val']['ece15'],'gap':r['gap']})
+ history=[json.loads(v) for v in (P/f'LORA/E1_s{seed}/history.jsonl').read_text().splitlines()];evidence.append({'seed':seed,'objectives':[r['objective'] for r in history],'adapter_gradient_max_each_epoch':[max(v for k,v in r['gradients'].items() if 'head' not in k) for r in history],'adapter_norms':[r['adapter_norm'] for r in history],'strictly_descending_objective':all(a['objective']>b['objective'] for a,b in zip(history,history[1:]))})
+rd=np.mean(rd,0);rng=np.random.default_rng(1701);ci=np.quantile(rd[rng.integers(0,len(rd),(5000,len(rd)))].mean(1),[.025,.975]);rc=np.mean(rc,0);criteria={'gain':np.mean(deltas)>=.003,'seeds':sum(d>0 for d in deltas)>=2,'interval':ci[0]>0,'tail':rc.min()>=-.10,'gap':np.mean(gaps)<=.05}
+csvout(P/'LORA/endpoints.csv',scores);dump(P/'LORA/decision.json',{'seed_deltas':deltas,'mean_delta':float(np.mean(deltas)),'ROI_bootstrap95':ci.tolist(),'class_recall_deltas':rc.tolist(),'gap_delta':float(np.mean(gaps)),'criteria':{k:bool(v) for k,v in criteria.items()},'promote':all(criteria.values()),'second_configuration_justified':bool(criteria['gain'] and criteria['seeds'] and criteria['interval']),'interpretation':'Frozen-prefix parity verified. Tiny finite-budget adaptation is not evidence that all LoRA configurations fail. No positive gain justifies a second setting under the registered rule.','training_diagnostics':evidence});print('LoRA delta',deltas,'CI',ci,'promote',all(criteria.values()))

@@ -1,0 +1,114 @@
+{
+  "epochs": 150,
+  "fold": 0,
+  "weights": "ema_final_fixed_epoch",
+  "training_signature": {
+    "data": {
+      "number_of_folds": 5,
+      "seed": 42,
+      "heatmap_sigma_grid_units": 1.7,
+      "stage1_output_stride": 2
+    },
+    "stage1": {
+      "epochs": 150,
+      "micro_batch_size": 4,
+      "effective_batch_size": 8,
+      "base_channels": 48,
+      "fpn_channels": 96,
+      "learning_rate": 0.00035,
+      "backbone_learning_rate_scale": 1.0,
+      "minimum_learning_rate": 2e-06,
+      "weight_decay": 0.0001,
+      "warmup_epochs": 5,
+      "gradient_clip_norm": 1.0,
+      "ema_decay": 0.9995,
+      "heatmap_loss_weight": 0.55,
+      "offset_loss_weight": 0.18,
+      "quality_loss_weight": 0.12,
+      "uncertainty_loss_weight": 0.05,
+      "hard_negative_loss_weight": 0.1,
+      "hard_negative_topk_per_image": 256,
+      "hard_negative_start_epoch": 5,
+      "hard_negative_ramp_epochs": 10,
+      "use_d4_augmentation": true,
+      "d4_augmentation_probability": 0.875,
+      "photometric_augmentation": true,
+      "brightness_range": [
+        0.92,
+        1.08
+      ],
+      "contrast_range": [
+        0.9,
+        1.1
+      ],
+      "gamma_range": [
+        0.9,
+        1.1
+      ],
+      "channel_scale_range": [
+        0.96,
+        1.04
+      ],
+      "proposal_quality_power": 1.0,
+      "proposal_uncertainty_penalty": 0.0,
+      "validation_decode_threshold": 0.03,
+      "validation_thresholds": [
+        0.005,
+        0.01,
+        0.02,
+        0.03,
+        0.04,
+        0.05,
+        0.075,
+        0.1,
+        0.125,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.4,
+        0.5,
+        0.65,
+        0.8,
+        0.9,
+        0.95
+      ],
+      "validation_suppression_radii_pixels": [
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        8.0
+      ],
+      "validation_min_recall": 0.93,
+      "local_max_radius": 2,
+      "suppression_radius_pixels": 3.0,
+      "max_candidates_per_roi": 4000,
+      "offset_range_grid_units": 2.5,
+      "quality_target_sigma_grid_units": 0.75,
+      "checkpoint_every_epochs": 1
+    },
+    "runtime": {
+      "use_bfloat16": true,
+      "allow_tf32": true,
+      "channels_last": true,
+      "fused_adamw": true
+    }
+  },
+  "oof_safe": true,
+  "held_diagnostic_best_validation_score": 0.9328861964517525,
+  "held_diagnostic_best_validation_key": [
+    1.0,
+    0.9328861964517525,
+    0.9181856899488927,
+    0.8482815917869229,
+    0.9480650835532102,
+    0.8742143465390698,
+    -0.05,
+    -8.0
+  ],
+  "held_diagnostic_best_validation_threshold": 0.05,
+  "held_diagnostic_best_validation_suppression_radius": 8.0,
+  "held_diagnostic_best_validation_epoch": 147,
+  "diagnostic_best_checkpoint": "/content/drive/MyDrive/Research/PUMA/PUMA_stage1_training_outputs/run/fold_0/checkpoints/best.pt"
+}

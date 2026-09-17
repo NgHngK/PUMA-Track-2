@@ -1,0 +1,11 @@
+# F implementation clarification before any mask or pooling fit
+
+This fixes the implementation of the previously registered clean-mask experiment. It does not change any completed A–E result or choose a recipe using F outcomes.
+
+Use the 156 nuclei from historical detector fold 0, retaining the original 80/76 Stage 2 training/validation membership. The mask network learns only from the 294 other nuclei with ground-truth prompts; no proposal-derived training input or semantic label enters that network. This is an additional small-data mask experiment, not a reproduction of historical BioMask weights.
+
+Align the predicted 96-by-96 probability map to the appearance crop by integer crop-origin translation. Fill pixels outside the source map with zero. Average each 6-by-6 source-pixel block into a 16-by-16 patch grid; divide by the total weight. If total weight is below 1e-12, use the already fixed Gaussian weights and record the fallback. No thresholded ground-truth mask enters pooling.
+
+Six downstream representations, each with the identical A5 rank-8 head and train-only Tier-A standardization: (1) A3 neighborhood reference, (2) A2 Gaussian geometric reference, (3) clean predicted-mask pooling, (4) equal mean of separately layer-normalized CLS and mask-pooled features, (5) mask pooling with predicted masks shuffled within training and validation partitions separately, and (6) the same CLS fusion with shuffled masks. The two shuffle maps use fixed RNG seed1701, created without semantic labels; recipient coordinates remain fixed. All heads use seeds17/29/43, ten epochs, the existing inverse-class sampler and ordinary CE. No new head or parameter count is introduced.
+
+Mask-only and CLS-plus-mask hypotheses each must beat A3 by at least .003 and their corresponding shuffled control and Gaussian by at least .002, improve at least two of three seeds, have positive paired ROI-bootstrap lower bound (5000 draws, seed1701), avoid any class recall drop greater than .10, and avoid a semantic train-validation gap increase greater than .05. Compare only within this identical cohort. If neither passes, exclude predicted masks from the final architecture. Passing here is conditional cohort evidence; it does not authorize contaminated masks on the original 450 nuclei or establish full-proposal performance.

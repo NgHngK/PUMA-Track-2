@@ -1,0 +1,148 @@
+{
+  "proposal_count": 109637,
+  "matched_count": 94345,
+  "reject_count": 15292,
+  "zero_proposal_roi_count": 0,
+  "zero_proposal_roi_indices": [],
+  "min_proposals_per_roi": 198,
+  "max_proposals_per_roi": 1163,
+  "stage1_checkpoint_policy": "fold-matched final.pt fixed-epoch EMA + fixed decoder operating point",
+  "proposal_sha256": "ea359add2fd892ddd6ed6163f089dabfeed6fa94127bb9347a4cc28c318ee51a",
+  "roi_offsets_sha256": "fb33a9d443a8554f86d629c95018dee0a9d8bfd8064f4ee586e9efe8bc4e2ad8",
+  "artifact_identity": {
+    "proposals.npy": {
+      "name": "proposals.npy",
+      "size_bytes": 46486472,
+      "mtime_ns": 1788574803000000000
+    },
+    "roi_proposal_offsets.npy": {
+      "name": "roi_proposal_offsets.npy",
+      "size_bytes": 1776,
+      "mtime_ns": 1788574803000000000
+    }
+  },
+  "shared_preprocessing_summary_sha256": "3e9130f387c0f62bd5f259a9e993907d3dc992da60fecead37bbf93829aea7f9",
+  "leakage_contract": "each target fold uses a model trained on the other folds; the OOF decoder operating point is fixed in configuration and has no held-label calibration dependency",
+  "fold_operating_points": [
+    {
+      "fold": 0,
+      "checkpoint": "/content/drive/MyDrive/Research/PUMA/PUMA_stage1_training_outputs/run/fold_0/checkpoints/final.pt",
+      "checkpoint_size_bytes": 70073648,
+      "checkpoint_mtime_ns": 1788210111000000000,
+      "checkpoint_sha256": "e36fb0a7316f7a74eae9d1285acc56a28516fce9be3d976e33c4a38b4bd0810a",
+      "checkpoint_epoch": 149,
+      "weights": "ema_final_fixed_epoch",
+      "threshold": 0.03,
+      "suppression_radius_pixels": 3.0,
+      "score_name": "heatmap_x_quality",
+      "proposal_quality_power": 1.0,
+      "proposal_uncertainty_penalty": 0.0,
+      "local_max_radius": 2,
+      "max_candidates_per_roi": 4000,
+      "training_folds": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "decoder_label_dependency_folds": [],
+      "decoder_selection": "fixed configuration; held labels never calibrate OOF decoder"
+    },
+    {
+      "fold": 1,
+      "checkpoint": "/content/drive/MyDrive/Research/PUMA/PUMA_stage1_training_outputs/run/fold_1/checkpoints/final.pt",
+      "checkpoint_size_bytes": 70073648,
+      "checkpoint_mtime_ns": 1788216022000000000,
+      "checkpoint_sha256": "2833df4162e1134c6847b66f149e65ef4950aee480a1180a1827c5191cd48a08",
+      "checkpoint_epoch": 149,
+      "weights": "ema_final_fixed_epoch",
+      "threshold": 0.03,
+      "suppression_radius_pixels": 3.0,
+      "score_name": "heatmap_x_quality",
+      "proposal_quality_power": 1.0,
+      "proposal_uncertainty_penalty": 0.0,
+      "local_max_radius": 2,
+      "max_candidates_per_roi": 4000,
+      "training_folds": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "decoder_label_dependency_folds": [],
+      "decoder_selection": "fixed configuration; held labels never calibrate OOF decoder"
+    },
+    {
+      "fold": 2,
+      "checkpoint": "/content/drive/MyDrive/Research/PUMA/PUMA_stage1_training_outputs/run/fold_2/checkpoints/final.pt",
+      "checkpoint_size_bytes": 70073648,
+      "checkpoint_mtime_ns": 1788216929000000000,
+      "checkpoint_sha256": "2b56dce01ab65974c2e8eeb1b1085831146c091c4c1a91be0f03e84b752a63d1",
+      "checkpoint_epoch": 149,
+      "weights": "ema_final_fixed_epoch",
+      "threshold": 0.03,
+      "suppression_radius_pixels": 3.0,
+      "score_name": "heatmap_x_quality",
+      "proposal_quality_power": 1.0,
+      "proposal_uncertainty_penalty": 0.0,
+      "local_max_radius": 2,
+      "max_candidates_per_roi": 4000,
+      "training_folds": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "decoder_label_dependency_folds": [],
+      "decoder_selection": "fixed configuration; held labels never calibrate OOF decoder"
+    },
+    {
+      "fold": 3,
+      "checkpoint": "/content/drive/MyDrive/Research/PUMA/PUMA_stage1_training_outputs/run/fold_3/checkpoints/final.pt",
+      "checkpoint_size_bytes": 70073648,
+      "checkpoint_mtime_ns": 1788246040000000000,
+      "checkpoint_sha256": "645b2ee4062d52c065829e3baa3889920c526b167e011305b16990702d3c9153",
+      "checkpoint_epoch": 149,
+      "weights": "ema_final_fixed_epoch",
+      "threshold": 0.03,
+      "suppression_radius_pixels": 3.0,
+      "score_name": "heatmap_x_quality",
+      "proposal_quality_power": 1.0,
+      "proposal_uncertainty_penalty": 0.0,
+      "local_max_radius": 2,
+      "max_candidates_per_roi": 4000,
+      "training_folds": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "decoder_label_dependency_folds": [],
+      "decoder_selection": "fixed configuration; held labels never calibrate OOF decoder"
+    },
+    {
+      "fold": 4,
+      "checkpoint": "/content/drive/MyDrive/Research/PUMA/PUMA_stage1_training_outputs/run/fold_4/checkpoints/final.pt",
+      "checkpoint_size_bytes": 70073648,
+      "checkpoint_mtime_ns": 1788234820000000000,
+      "checkpoint_sha256": "d96c5f52b7faa275fa1b08ed6ab6b366dd8d80536d3cb95770eea7676de4c0aa",
+      "checkpoint_epoch": 149,
+      "weights": "ema_final_fixed_epoch",
+      "threshold": 0.03,
+      "suppression_radius_pixels": 3.0,
+      "score_name": "heatmap_x_quality",
+      "proposal_quality_power": 1.0,
+      "proposal_uncertainty_penalty": 0.0,
+      "local_max_radius": 2,
+      "max_candidates_per_roi": 4000,
+      "training_folds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "decoder_label_dependency_folds": [],
+      "decoder_selection": "fixed configuration; held labels never calibrate OOF decoder"
+    }
+  ]
+}

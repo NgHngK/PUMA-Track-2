@@ -1,0 +1,3 @@
+# Clean GT-prompt mask control
+
+Run `python run_train.py --output NEW_CLEAN_MASK`. This reproduces the fixed ten-epoch mask-only training on294 non-fold0 nuclei. The held156 fold0 nuclei never enter this mask network training, and no Stage1-derived proposal or class label is a network input. Local mask source modules and immutable GT-only input snapshots are included. The archive records held Dice0.783957; this is a new small-data experiment, not the historical BioMask recipe. Downstream mask pooling failed promotion. `run_eval.py --checkpoint final.pt --output evaluation.json` strictly loads the checkpoint and evaluates all156 excluded fold0 nuclei. Optional `--reference-masks` checks forward probabilities against the archived mask cache.

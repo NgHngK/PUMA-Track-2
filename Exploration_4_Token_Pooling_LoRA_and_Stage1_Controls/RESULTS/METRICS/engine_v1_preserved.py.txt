@@ -1,0 +1,106 @@
+"""Prompt4 frozen-feature experiments. No mutation of historical code/results."""
+import sys,csv,json,time,collections,hashlib
+sys.dont_write_bytecode=True
+from pathlib import Path
+from bootstrap import W,BASE,OLD,R,dump,sha,cp
+sys.path.insert(0,str(OLD/'01_shared_core'))
+import numpy as np,torch,psutil
+from torch import nn
+from torch.utils.data import TensorDataset,DataLoader,WeightedRandomSampler
+from prompt3_models import Architecture
+from dataset import read_manifest,CLASSES
+from train import summary_metrics
+from train_eval import seed_all
+P=R/'PROMPT_4'
+def load_data():
+ rows=read_manifest(OLD/'01_sample_definition/sample_manifest.csv');cv=np.array([int(r['cv_fold']) for r in csv.DictReader((OLD/'01_sample_definition/prompt3_cv.csv').open())]);y=torch.tensor([r['label'] for r in rows]);return rows,cv,y
+def norm(x):return nn.functional.layer_norm(torch.as_tensor(np.asarray(x).copy(),dtype=torch.float32),(1536,))
+class Model(nn.Module):
+ def __init__(self,extra=0):
+  super().__init__();self.base=Architecture('A5',16);self.extra=nn.ModuleList()
+  for _ in range(extra):
+   v=nn.Sequential(nn.Linear(1536,8,bias=False),nn.Linear(8,10,bias=False));nn.init.zeros_(v[-1].weight);self.extra.append(v)
+ def forward(self,x):
+  z=self.base(x[:,:1552]);self.corrections=[]
+  for k,layer in enumerate(self.extra):
+   d=layer(x[:,1552+k*1536:1552+(k+1)*1536]);z=z+d;self.corrections.append(d.detach().norm(dim=1).mean().item())
+  return z
+def representations():
+ dest=P/'TARGET_POOLING/REPRESENTATIONS';dest.mkdir(exist_ok=True)
+ if (dest/'complete.json').exists():return
+ rows,cv,y=load_data();patch=np.load(P/'TOKEN_AUDIT/CACHE/patch.npy',mmap_mode='r');cls=np.load(OLD/'02_cache/uni2_features/gt_fov96/features.npy');n=len(rows)
+ coords=np.array([[(float(r[k])-np.floor(float(r[k])-48+.5))/6 for k in ['x','y']] for r in rows])
+ broken=np.random.default_rng(1701).uniform(2,14,(n,2));shuffled=coords[np.random.default_rng(1701).permutation(n)]
+ grid=np.stack(np.meshgrid(np.arange(16)+.5,np.arange(16)+.5),-1).reshape(-1,2)
+ outputs={k:np.empty((n,1536),dtype='float32') for k in ['A1','A2','A3','A1_broken','A2_broken','A3_broken','A2_literal_shuffle','A2_offcenter']};weights={}
+ for label,centers in [('real',coords),('broken',broken),('literal_shuffle',shuffled),('offcenter',coords+4)]:
+  ws=[]
+  for i in range(n):
+   xy=centers[i];w=np.exp(-((grid-xy)**2).sum(1)/(2*1.5**2));w=w/w.sum();ws.append(w)
+   g=(patch[i]*w[:,None]).sum(0)
+   if label in ['real','broken']:
+    suffix='' if label=='real' else '_broken';cx,cy=np.clip(np.floor(xy).astype(int),0,15);outputs['A1'+suffix][i]=patch[i,cy*16+cx]
+    near=(np.abs(np.arange(256)%16-cx)<=1)&(np.abs(np.arange(256)//16-cy)<=1);outputs['A3'+suffix][i]=patch[i,near].mean(0);outputs['A2'+suffix][i]=g
+   else:outputs['A2_'+label][i]=g
+  weights[label]=np.array(ws,dtype='float32')
+ for suffix in ['', '_broken']:outputs['A4'+suffix]=((norm(cls)+norm(outputs['A2'+suffix]))/2).numpy()
+ for k,v in outputs.items():np.save(dest/(k+'.npy'),v)
+ np.savez_compressed(dest/'pooling_geometry.npz',coordinates=coords,broken=broken,literal_shuffle=shuffled,grid=grid,**weights)
+ dump(dest/'complete.json',{'rows':n,'files':{k:sha(dest/(k+'.npy')) for k in outputs},'coordinate_patch_range':[coords.min(0).tolist(),coords.max(0).tolist()],'literal_shuffle_max_shift_patches':float(np.linalg.norm(coords-shuffled,axis=1).max()),'broken_not_GT_dependent':True})
+def inputs(cfg,ti):
+ rep=cfg.get('representation','A0');h=norm(np.load(OLD/'02_cache/uni2_features/gt_fov96/features.npy') if rep=='A0' else np.load(P/'TARGET_POOLING/REPRESENTATIONS'/(rep+'.npy')))
+ b=np.load(OLD/'02_cache/biology/tierA.npy');mean=b[ti].mean(0);std=np.maximum(b[ti].std(0),1e-6);b=torch.from_numpy(((b-mean)/std).astype('float32'));parts=[h,b]
+ for scale in cfg.get('scales',[]):parts.append(norm(np.load(OLD/f'02_cache/uni2_features/gt_fov{scale}/features.npy')))
+ return torch.cat(parts,1),{'mean':mean.tolist(),'std':std.tolist()}
+def extra_metrics(rows,y,z):
+ m=summary_metrics(rows,y,z);cm=np.array(m['confusion']);per=[]
+ for c,name in enumerate(CLASSES):
+  fn=cm[c].copy();fn[c]=0;fp=cm[:,c].copy();fp[c]=0
+  per.append({'class':name,'positive_ROIs':len({r['roi'] for r,t in zip(rows,y) if t==c}),'semantic_TP':int(cm[c,c]),'semantic_FP':int(cm[:,c].sum()-cm[c,c]),'semantic_FN':int(cm[c].sum()-cm[c,c]),'dominant_FN_class':CLASSES[fn.argmax()] if fn.sum() else None,'dominant_FP_source':CLASSES[fp.argmax()] if fp.sum() else None})
+ m['class_diagnostics']=per;return m
+def run(cfg):
+ torch.set_num_threads(2);out=P/'RUNS'/cfg['id']
+ if (out/'summary.json').exists():return json.loads((out/'summary.json').read_text())
+ if out.exists():raise RuntimeError('Partial run preserved; explicit resume required: '+str(out))
+ rows,cv,y=load_data();fold=cfg.get('fold',0);ti=np.flatnonzero((cv>=0)&(cv!=fold)) if fold>=0 else np.flatnonzero(cv>=0);vi=np.flatnonzero(cv==fold) if fold>=0 else np.flatnonzero(cv<0)
+ x,normalizer=inputs(cfg,ti);seed=cfg['seed'];seed_all(seed);m=Model(len(cfg.get('scales',[])));counts=torch.bincount(y[ti],minlength=10).float()
+ buckets=[rows[i]['roi']+'|'+str(int(y[i])) for i in ti];bc=collections.Counter(buckets)
+ weights=torch.tensor([1/bc[b] for b in buckets]) if cfg.get('sampler')=='roi_class' else 1/counts[y[ti]]
+ sampler=WeightedRandomSampler(weights,len(ti),generator=torch.Generator().manual_seed(seed));loader=DataLoader(TensorDataset(x[ti],y[ti],torch.tensor(ti)),batch_size=64,sampler=sampler,generator=torch.Generator().manual_seed(seed))
+ opt=torch.optim.AdamW(m.parameters(),lr=.001,weight_decay=.01);out.mkdir(parents=True);dump(out/'config.json',cfg);dump(out/'normalizer.json',normalizer)
+ dump(out/'provenance.json',{'engine':sha(Path(__file__)),'model_source':sha(OLD/'01_shared_core/prompt3_models.py'),'manifest':sha(OLD/'01_sample_definition/sample_manifest.csv'),'cv':sha(OLD/'01_sample_definition/prompt3_cv.csv'),'protocol':sha(P/'PROVENANCE/PROTOCOL.md'),'input_config':cfg,'input_tensor_sha256':hashlib.sha256(x.numpy().tobytes()).hexdigest(),'evaluator':sha(OLD/'01_shared_core/puma_v17_evaluator/evaluation/public_matcher.py')})
+ start=time.perf_counter();cpu=time.process_time();proc=psutil.Process();peak=0
+ for epoch in range(1,cfg.get('epochs',10)+1):
+  t=time.perf_counter();cput=time.process_time();m.train();loss_sum=0;seen=0;exposure=np.zeros(10,dtype=int);seenids=[];grads=collections.defaultdict(list);step=0
+  for xb,yb,ids in loader:
+   bt=time.perf_counter();opt.zero_grad(set_to_none=True);z=m(xb);loss=nn.functional.cross_entropy(z,yb)
+   assert torch.isfinite(loss);loss.backward();gn=float(nn.utils.clip_grad_norm_(m.parameters(),1,error_if_nonfinite=True));g={n:float(p.grad.norm()) for n,p in m.named_parameters() if p.grad is not None}
+   for k,v in g.items():grads[k].append(v)
+   opt.step();seen+=len(yb);loss_sum+=float(loss.detach())*len(yb);exposure+=np.bincount(yb.numpy(),minlength=10);seenids.extend(ids.tolist());step+=1
+   with (out/'batch_history.jsonl').open('a') as f:f.write(json.dumps({'epoch':epoch,'step':step,'loss':float(loss.detach()),'indices':ids.tolist(),'class_exposure':np.bincount(yb.numpy(),minlength=10).tolist(),'gradient_norm_before_clip':gn,'gradients':g,'lr':.001,'seconds':time.perf_counter()-bt})+'\n')
+  train_secs=time.perf_counter()-t;ev=time.perf_counter()
+  with torch.no_grad():
+   m.eval();zt=m(x[ti]);zv=m(x[vi]);mt=extra_metrics([rows[i] for i in ti],y[ti].numpy(),zt);mv=extra_metrics([rows[i] for i in vi],y[vi].numpy(),zv)
+   diag={k:float(v.float().mean()) for k,v in m.base.diagnostics.items()};diag['extra_correction_norms']=m.corrections
+  roi_ex=collections.Counter(rows[i]['roi'] for i in seenids);bucket_ex=collections.Counter(rows[i]['roi']+'|'+str(int(y[i])) for i in seenids);peak=max(peak,proc.memory_info().rss)
+  rec={'epoch':epoch,'objective':loss_sum/seen,'train_CE':mt['nll'],'val_CE':mv['nll'],'train':mt,'val':mv,'lr':.001,'optimizer_steps':step,'batches':step,'effective_samples_seen':seen,'effective_batch_size':64,'gradient_accumulation':1,'exposure':exposure.tolist(),'ROI_exposure':dict(roi_ex),'bucket_exposure':dict(bucket_ex),'unique_ROIs':len(roi_ex),'unique_UIDs':len(set(seenids)),'repeat_rate':1-len(set(seenids))/seen,'effective_prevalence':(exposure/seen).tolist(),'gradients':{k:float(np.mean(v)) for k,v in grads.items()},'parameter_norm':float(torch.sqrt(sum(p.detach().square().sum() for p in m.parameters()))),'gap':mt['macro_f1']-mv['macro_f1'],'diagnostics':diag,'train_seconds':train_secs,'evaluation_seconds':time.perf_counter()-ev,'epoch_seconds':time.perf_counter()-t,'cpu_seconds':time.process_time()-cput,'peak_RSS':peak,'samples_per_second':seen/train_secs,'steps_per_second':step/train_secs,'evaluation_calls':2,'checkpoint_status':'fixed endpoint' if epoch==cfg.get('epochs',10) else 'diagnostic only','early_stopping_counter':'disabled; fixed endpoint'}
+  with (out/'history.jsonl').open('a') as f:f.write(json.dumps(rec)+'\n')
+  np.savez_compressed(out/f'epoch_{epoch:02}_predictions.npz',indices=vi,labels=y[vi].numpy(),logits=zv.numpy(),train_indices=ti,train_logits=zt.numpy())
+ torch.save({'model':m.state_dict(),'optimizer':opt.state_dict(),'config':cfg,'normalizer':normalizer,'epoch':epoch},out/'final.pt')
+ s={'id':cfg['id'],'config':cfg,'selected':rec,'runtime_seconds':time.perf_counter()-start,'cpu_seconds':time.process_time()-cpu,'trainable_parameters':sum(p.numel() for p in m.parameters()),'selection':'fixed final epoch','peak_RSS':peak}
+ # Reference parity is enforced before admitting any downstream experiment.
+ if cfg['id'].startswith('A0_') and fold>=0:
+  old=np.load(OLD/f'experiments/p3_A5_real_s{seed}_cv{fold}/predictions.npz')['logits'];error=float(np.max(np.abs(zv.numpy()-old)));assert np.allclose(zv.numpy(),old,rtol=1e-5,atol=2e-5),error;s['reference_max_logit_error']=error
+ dump(out/'summary.json',s);print(cfg['id'],round(mv['puma']['fixed10']['macro_f1'],5),flush=True);return s
+if __name__=='__main__':
+ import argparse
+ ap=argparse.ArgumentParser();ap.add_argument('--phase',choices=['reference','A','B','D']);ap.add_argument('--config');a=ap.parse_args()
+ if a.config:run(json.loads(Path(a.config).read_text()));sys.exit()
+ variants=[]
+ if a.phase=='reference':variants=[('A0',{'representation':'A0'})]
+ if a.phase=='A':representations();variants=[(k,{'representation':k}) for k in ['A1','A2','A3','A4','A1_broken','A2_broken','A3_broken','A4_broken']]
+ if a.phase=='B':variants=[('B1',{'scales':[64]}),('B2',{'scales':[128]}),('B_duplicate',{'scales':[96]})]
+ if a.phase=='D':variants=[('D1',{'sampler':'roi_class'})]
+ for kind,kw in variants:
+  for seed in [17,29,43]:
+   for fold in range(3):run({'id':f'{kind}_s{seed}_cv{fold}','family':kind,'seed':seed,'fold':fold,'epochs':10,**kw})
