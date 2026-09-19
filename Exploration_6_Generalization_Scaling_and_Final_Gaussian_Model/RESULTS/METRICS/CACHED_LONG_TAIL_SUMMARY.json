@@ -1,0 +1,193 @@
+{
+  "status": "COMPLETE_CONDITIONAL_CACHED_CONTROLS",
+  "holdouts_opened": false,
+  "means": {
+    "inverse": {
+      "train_f1": 0.9061115777574384,
+      "dev_f1": 0.42779995019021405,
+      "roi_f1": 0.14977040816326528,
+      "gap": 0.47831162756722434,
+      "dev_nll": 1.8551273345947266,
+      "ece15": 0.16383942136058097
+    },
+    "natural": {
+      "train_f1": 0.9283840888872668,
+      "dev_f1": 0.4071065900559831,
+      "roi_f1": 0.1380045351473923,
+      "gap": 0.5212774988312836,
+      "dev_nll": 1.8094123204549153,
+      "ece15": 0.19255779027938844
+    },
+    "tempered": {
+      "train_f1": 0.9010818031869512,
+      "dev_f1": 0.4074727542345906,
+      "roi_f1": 0.14002834467120182,
+      "gap": 0.4936090489523605,
+      "dev_nll": 1.7723570267359416,
+      "ece15": 0.1844263697553564
+    },
+    "crt_reset": {
+      "train_f1": 0.8050193680936526,
+      "dev_f1": 0.4146578410467834,
+      "roi_f1": 0.13776927437641726,
+      "gap": 0.39036152704686927,
+      "dev_nll": 1.7236515283584595,
+      "ece15": 0.14275884648164114
+    },
+    "crt_noreset": {
+      "train_f1": 0.9582853338690066,
+      "dev_f1": 0.4097391352943354,
+      "roi_f1": 0.14076247165532882,
+      "gap": 0.5485461985746712,
+      "dev_nll": 1.9558659394582112,
+      "ece15": 0.22070987551300614
+    }
+  },
+  "comparisons": [
+    {
+      "candidate": "natural",
+      "control": "inverse",
+      "roi_delta": -0.011765873015873016,
+      "ci95": [
+        -0.01976190476190476,
+        -0.004383432539682548
+      ],
+      "positive_seeds": 0,
+      "mean_recall_delta": {
+        "tumor": -0.01724137931034479,
+        "lymphocyte": 0.0,
+        "plasma_cell": 0.05555555555555555,
+        "histiocyte": -0.07407407407407408,
+        "melanophage": -0.1851851851851852,
+        "neutrophil": 0.05555555555555556,
+        "stroma": -0.12962962962962962,
+        "epithelium": 0.037037037037037056,
+        "endothelium": 0.07407407407407407,
+        "apoptosis": -0.037037037037037014
+      },
+      "class_harm": [
+        "melanophage",
+        "stroma"
+      ],
+      "gap_change": 0.04296587126405926,
+      "passes_numeric_guards": false,
+      "promotion": "NOT AUTHORIZED: conditional on B augmentation resolution",
+      "bootstrap": "2000 resamples of56pairedROI effects averaged across3seeds; seed1706"
+    },
+    {
+      "candidate": "tempered",
+      "control": "inverse",
+      "roi_delta": -0.009742063492063495,
+      "ci95": [
+        -0.020437500000000004,
+        -1.8849206349213407e-05
+      ],
+      "positive_seeds": 1,
+      "mean_recall_delta": {
+        "tumor": 0.028735632183908066,
+        "lymphocyte": 0.014492753623188415,
+        "plasma_cell": 0.0,
+        "histiocyte": -0.03703703703703704,
+        "melanophage": 0.01851851851851849,
+        "neutrophil": 0.07407407407407411,
+        "stroma": -0.12962962962962962,
+        "epithelium": 3.700743415417188e-17,
+        "endothelium": -0.11111111111111115,
+        "apoptosis": -0.07407407407407406
+      },
+      "class_harm": [
+        "stroma",
+        "endothelium"
+      ],
+      "gap_change": 0.01529742138513616,
+      "passes_numeric_guards": false,
+      "promotion": "NOT AUTHORIZED: conditional on B augmentation resolution",
+      "bootstrap": "2000 resamples of56pairedROI effects averaged across3seeds; seed1706"
+    },
+    {
+      "candidate": "crt_reset",
+      "control": "inverse",
+      "roi_delta": -0.012001133786848072,
+      "ci95": [
+        -0.0232578656462585,
+        -0.0008613945578231286
+      ],
+      "positive_seeds": 0,
+      "mean_recall_delta": {
+        "tumor": -0.0862068965517241,
+        "lymphocyte": -0.01449275362318836,
+        "plasma_cell": 0.07407407407407407,
+        "histiocyte": -0.11111111111111112,
+        "melanophage": -3.700743415417188e-17,
+        "neutrophil": 0.11111111111111112,
+        "stroma": -0.05555555555555553,
+        "epithelium": 0.01851851851851849,
+        "endothelium": 0.09259259259259257,
+        "apoptosis": -0.07407407407407406
+      },
+      "class_harm": [
+        "histiocyte"
+      ],
+      "gap_change": -0.08795010052035503,
+      "passes_numeric_guards": false,
+      "promotion": "NOT AUTHORIZED: conditional on B augmentation resolution",
+      "bootstrap": "2000 resamples of56pairedROI effects averaged across3seeds; seed1706"
+    },
+    {
+      "candidate": "crt_noreset",
+      "control": "inverse",
+      "roi_delta": -0.009007936507936508,
+      "ci95": [
+        -0.018434523809523814,
+        -9.474206349208938e-05
+      ],
+      "positive_seeds": 0,
+      "mean_recall_delta": {
+        "tumor": -0.011494252873563204,
+        "lymphocyte": 0.04347826086956522,
+        "plasma_cell": 0.018518518518518517,
+        "histiocyte": -0.05555555555555555,
+        "melanophage": -0.05555555555555558,
+        "neutrophil": 0.09259259259259257,
+        "stroma": -0.12962962962962965,
+        "epithelium": 0.018518518518518528,
+        "endothelium": -0.05555555555555556,
+        "apoptosis": -0.037037037037037014
+      },
+      "class_harm": [
+        "stroma"
+      ],
+      "gap_change": 0.07023457100744686,
+      "passes_numeric_guards": false,
+      "promotion": "NOT AUTHORIZED: conditional on B augmentation resolution",
+      "bootstrap": "2000 resamples of56pairedROI effects averaged across3seeds; seed1706"
+    },
+    {
+      "candidate": "crt_reset",
+      "control": "crt_noreset",
+      "roi_delta": -0.002993197278911561,
+      "ci95": [
+        -0.015419359410430836,
+        0.009354591836734694
+      ],
+      "positive_seeds": 1,
+      "mean_recall_delta": {
+        "tumor": -0.0747126436781609,
+        "lymphocyte": -0.05797101449275358,
+        "plasma_cell": 0.05555555555555555,
+        "histiocyte": -0.05555555555555556,
+        "melanophage": 0.055555555555555546,
+        "neutrophil": 0.018518518518518545,
+        "stroma": 0.0740740740740741,
+        "epithelium": -3.700743415417188e-17,
+        "endothelium": 0.14814814814814814,
+        "apoptosis": -0.037037037037037035
+      },
+      "class_harm": [],
+      "gap_change": -0.15818467152780188,
+      "passes_numeric_guards": false,
+      "promotion": "NOT AUTHORIZED: conditional on B augmentation resolution",
+      "bootstrap": "2000 resamples of56pairedROI effects averaged across3seeds; seed1706"
+    }
+  ]
+}

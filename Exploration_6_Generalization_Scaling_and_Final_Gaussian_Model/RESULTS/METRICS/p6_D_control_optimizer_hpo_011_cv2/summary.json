@@ -1,0 +1,4518 @@
+{
+  "experiment_id": "p6_D_control_optimizer_hpo_011_cv2",
+  "best_score": 0.23078098230272137,
+  "best_diagnostic_epoch": 17,
+  "selected_score": 0.23078098230272137,
+  "selected_epoch": 17,
+  "selection_mode": "early_stop",
+  "epochs_run": 20,
+  "trainable_parameters": 27866,
+  "final_stage_trainable_parameters": 27866,
+  "runtime_seconds": 3.508646090999946,
+  "selected": {
+    "epoch": 17,
+    "objective": 0.6256819712488275,
+    "train": {
+      "macro_f1": 0.806048079113714,
+      "macro_precision": 0.79378358906396,
+      "macro_recall": 0.8291158810403816,
+      "balanced_accuracy_fixed10": 0.8291158810403816,
+      "accuracy": 0.805921052631579,
+      "ece15": 0.16681761387735605,
+      "nll": 0.7022131085395813,
+      "support": [
+        136,
+        70,
+        53,
+        48,
+        46,
+        67,
+        51,
+        43,
+        47,
+        47
+      ],
+      "predicted": [
+        104,
+        61,
+        53,
+        46,
+        59,
+        74,
+        52,
+        56,
+        55,
+        48
+      ],
+      "precision": [
+        0.8942307692307693,
+        0.8032786885245902,
+        0.8490566037735849,
+        0.8043478260869565,
+        0.7457627118644068,
+        0.8918918918918919,
+        0.6730769230769231,
+        0.7678571428571429,
+        0.8,
+        0.7083333333333334
+      ],
+      "recall": [
+        0.6838235294117647,
+        0.7,
+        0.8490566037735849,
+        0.7708333333333334,
+        0.9565217391304348,
+        0.9850746268656716,
+        0.6862745098039216,
+        1.0,
+        0.9361702127659575,
+        0.723404255319149
+      ],
+      "f1": [
+        0.775,
+        0.7480916030534351,
+        0.8490566037735849,
+        0.7872340425531915,
+        0.8380952380952381,
+        0.9361702127659575,
+        0.6796116504854369,
+        0.8686868686868687,
+        0.8627450980392157,
+        0.7157894736842105
+      ],
+      "confusion": [
+        [
+          93,
+          6,
+          3,
+          3,
+          3,
+          2,
+          7,
+          8,
+          2,
+          9
+        ],
+        [
+          4,
+          49,
+          2,
+          3,
+          2,
+          1,
+          5,
+          0,
+          2,
+          2
+        ],
+        [
+          1,
+          3,
+          45,
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          2,
+          0,
+          37,
+          2,
+          1,
+          3,
+          1,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          44,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          66,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          2,
+          1,
+          1,
+          2,
+          2,
+          1,
+          35,
+          2,
+          2,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          43,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0,
+          2,
+          0,
+          0,
+          0,
+          44,
+          0
+        ],
+        [
+          2,
+          0,
+          1,
+          1,
+          3,
+          2,
+          1,
+          1,
+          2,
+          34
+        ]
+      ],
+      "missing_classes": [],
+      "puma": {
+        "evaluation_contract_id": "puma_public_track2_nuclei_class_first_greedy_dynamic_avg_2026",
+        "public_dynamic": {
+          "macro_precision": 0.45019779653825703,
+          "macro_recall": 0.4381313453124337,
+          "macro_f1": 0.4273142888294238,
+          "precision_by_class": {
+            "nuclei_apoptosis": 0.40657894736842104,
+            "nuclei_endothelium": 0.6228070175438597,
+            "nuclei_histiocyte": 0.4973684210526315,
+            "nuclei_lymphocyte": 0.7850877192982456,
+            "nuclei_stroma": 0.5482456140350876,
+            "nuclei_tumor": 0.8478070175438597,
+            "nuclei_melanophage": 0.34254385964912276,
+            "nuclei_plasma_cell": 0.192442645074224,
+            "nuclei_neutrophil": 0.12870065789473684,
+            "nuclei_epithelium": 0.13039606592238173
+          },
+          "recall_by_class": {
+            "nuclei_apoptosis": 0.4254385964912281,
+            "nuclei_endothelium": 0.6710526315789473,
+            "nuclei_histiocyte": 0.4868421052631579,
+            "nuclei_lymphocyte": 0.6578947368421053,
+            "nuclei_stroma": 0.6052631578947368,
+            "nuclei_tumor": 0.6885964912280702,
+            "nuclei_melanophage": 0.40789473684210525,
+            "nuclei_plasma_cell": 0.15350877192982457,
+            "nuclei_neutrophil": 0.12692748821205554,
+            "nuclei_epithelium": 0.15789473684210525
+          },
+          "f1_by_class": {
+            "nuclei_apoptosis": 0.40288220551378445,
+            "nuclei_endothelium": 0.6280701754385966,
+            "nuclei_histiocyte": 0.47293233082706765,
+            "nuclei_lymphocyte": 0.6877192982456141,
+            "nuclei_stroma": 0.5482456140350876,
+            "nuclei_tumor": 0.7342314118629908,
+            "nuclei_melanophage": 0.36407685881370094,
+            "nuclei_plasma_cell": 0.16505847953216374,
+            "nuclei_neutrophil": 0.12762911029920015,
+            "nuclei_epithelium": 0.14229740372603336
+          },
+          "class_universe": [
+            "nuclei_apoptosis",
+            "nuclei_endothelium",
+            "nuclei_histiocyte",
+            "nuclei_lymphocyte",
+            "nuclei_stroma",
+            "nuclei_tumor",
+            "nuclei_melanophage",
+            "nuclei_plasma_cell",
+            "nuclei_neutrophil",
+            "nuclei_epithelium"
+          ]
+        },
+        "fixed10": {
+          "macro_precision": 0.450197796538257,
+          "macro_recall": 0.4381313453124336,
+          "macro_f1": 0.4273142888294239,
+          "precision_by_class": {
+            "nuclei_tumor": 0.8478070175438597,
+            "nuclei_lymphocyte": 0.7850877192982456,
+            "nuclei_plasma_cell": 0.192442645074224,
+            "nuclei_histiocyte": 0.4973684210526315,
+            "nuclei_melanophage": 0.34254385964912276,
+            "nuclei_neutrophil": 0.12870065789473684,
+            "nuclei_stroma": 0.5482456140350876,
+            "nuclei_endothelium": 0.6228070175438597,
+            "nuclei_epithelium": 0.13039606592238173,
+            "nuclei_apoptosis": 0.40657894736842104
+          },
+          "recall_by_class": {
+            "nuclei_tumor": 0.6885964912280702,
+            "nuclei_lymphocyte": 0.6578947368421053,
+            "nuclei_plasma_cell": 0.15350877192982457,
+            "nuclei_histiocyte": 0.4868421052631579,
+            "nuclei_melanophage": 0.40789473684210525,
+            "nuclei_neutrophil": 0.12692748821205554,
+            "nuclei_stroma": 0.6052631578947368,
+            "nuclei_endothelium": 0.6710526315789473,
+            "nuclei_epithelium": 0.15789473684210525,
+            "nuclei_apoptosis": 0.4254385964912281
+          },
+          "f1_by_class": {
+            "nuclei_tumor": 0.7342314118629908,
+            "nuclei_lymphocyte": 0.6877192982456141,
+            "nuclei_plasma_cell": 0.16505847953216374,
+            "nuclei_histiocyte": 0.47293233082706765,
+            "nuclei_melanophage": 0.36407685881370094,
+            "nuclei_neutrophil": 0.12762911029920015,
+            "nuclei_stroma": 0.5482456140350876,
+            "nuclei_endothelium": 0.6280701754385966,
+            "nuclei_epithelium": 0.14229740372603336,
+            "nuclei_apoptosis": 0.40288220551378445
+          },
+          "class_universe": [
+            "nuclei_tumor",
+            "nuclei_lymphocyte",
+            "nuclei_plasma_cell",
+            "nuclei_histiocyte",
+            "nuclei_melanophage",
+            "nuclei_neutrophil",
+            "nuclei_stroma",
+            "nuclei_endothelium",
+            "nuclei_epithelium",
+            "nuclei_apoptosis"
+          ]
+        },
+        "summed": {
+          "macro_precision": 0.7951349404153113,
+          "macro_recall": 0.8263227040681004,
+          "macro_f1": 0.8054866133926737,
+          "precision_by_class": {
+            "nuclei_tumor": 0.8942307692307693,
+            "nuclei_lymphocyte": 0.8032786885245902,
+            "nuclei_plasma_cell": 0.8490566037735849,
+            "nuclei_histiocyte": 0.8043478260869565,
+            "nuclei_melanophage": 0.7457627118644068,
+            "nuclei_neutrophil": 0.9054054054054054,
+            "nuclei_stroma": 0.6730769230769231,
+            "nuclei_endothelium": 0.8,
+            "nuclei_epithelium": 0.7678571428571429,
+            "nuclei_apoptosis": 0.7083333333333334
+          },
+          "recall_by_class": {
+            "nuclei_tumor": 0.6838235294117647,
+            "nuclei_lymphocyte": 0.7,
+            "nuclei_plasma_cell": 0.8490566037735849,
+            "nuclei_histiocyte": 0.7708333333333334,
+            "nuclei_melanophage": 0.9565217391304348,
+            "nuclei_neutrophil": 0.9571428571428572,
+            "nuclei_stroma": 0.6862745098039216,
+            "nuclei_endothelium": 0.9361702127659575,
+            "nuclei_epithelium": 1.0,
+            "nuclei_apoptosis": 0.723404255319149
+          },
+          "f1_by_class": {
+            "nuclei_tumor": 0.7749999999999999,
+            "nuclei_lymphocyte": 0.7480916030534351,
+            "nuclei_plasma_cell": 0.8490566037735849,
+            "nuclei_histiocyte": 0.7872340425531915,
+            "nuclei_melanophage": 0.8380952380952381,
+            "nuclei_neutrophil": 0.9305555555555555,
+            "nuclei_stroma": 0.6796116504854369,
+            "nuclei_endothelium": 0.8627450980392157,
+            "nuclei_epithelium": 0.8686868686868687,
+            "nuclei_apoptosis": 0.7157894736842105
+          },
+          "class_metrics": {
+            "nuclei_tumor": {
+              "TP": 93,
+              "FP": 11,
+              "FN": 43,
+              "precision": 0.8942307692307693,
+              "recall": 0.6838235294117647,
+              "f1_score": 0.7749999999999999
+            },
+            "nuclei_lymphocyte": {
+              "TP": 49,
+              "FP": 12,
+              "FN": 21,
+              "precision": 0.8032786885245902,
+              "recall": 0.7,
+              "f1_score": 0.7480916030534351
+            },
+            "nuclei_plasma_cell": {
+              "TP": 45,
+              "FP": 8,
+              "FN": 8,
+              "precision": 0.8490566037735849,
+              "recall": 0.8490566037735849,
+              "f1_score": 0.8490566037735849
+            },
+            "nuclei_histiocyte": {
+              "TP": 37,
+              "FP": 9,
+              "FN": 11,
+              "precision": 0.8043478260869565,
+              "recall": 0.7708333333333334,
+              "f1_score": 0.7872340425531915
+            },
+            "nuclei_melanophage": {
+              "TP": 44,
+              "FP": 15,
+              "FN": 2,
+              "precision": 0.7457627118644068,
+              "recall": 0.9565217391304348,
+              "f1_score": 0.8380952380952381
+            },
+            "nuclei_neutrophil": {
+              "TP": 67,
+              "FP": 7,
+              "FN": 3,
+              "precision": 0.9054054054054054,
+              "recall": 0.9571428571428572,
+              "f1_score": 0.9305555555555555
+            },
+            "nuclei_stroma": {
+              "TP": 35,
+              "FP": 17,
+              "FN": 16,
+              "precision": 0.6730769230769231,
+              "recall": 0.6862745098039216,
+              "f1_score": 0.6796116504854369
+            },
+            "nuclei_endothelium": {
+              "TP": 44,
+              "FP": 11,
+              "FN": 3,
+              "precision": 0.8,
+              "recall": 0.9361702127659575,
+              "f1_score": 0.8627450980392157
+            },
+            "nuclei_epithelium": {
+              "TP": 43,
+              "FP": 13,
+              "FN": 0,
+              "precision": 0.7678571428571429,
+              "recall": 1.0,
+              "f1_score": 0.8686868686868687
+            },
+            "nuclei_apoptosis": {
+              "TP": 34,
+              "FP": 14,
+              "FN": 13,
+              "precision": 0.7083333333333334,
+              "recall": 0.723404255319149,
+              "f1_score": 0.7157894736842105
+            }
+          },
+          "class_universe": [
+            "nuclei_tumor",
+            "nuclei_lymphocyte",
+            "nuclei_plasma_cell",
+            "nuclei_histiocyte",
+            "nuclei_melanophage",
+            "nuclei_neutrophil",
+            "nuclei_stroma",
+            "nuclei_endothelium",
+            "nuclei_epithelium",
+            "nuclei_apoptosis"
+          ]
+        },
+        "roi_metrics": [
+          {
+            "nuclei_apoptosis": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_endothelium": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_tumor": {
+              "TP": 4,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.8,
+              "recall": 1.0,
+              "f1_score": 0.888888888888889
+            },
+            "micro": {
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "f1_score": 0.8333333333333334
+            },
+            "macro": {
+              "f1_score": 0.725925925925926
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "micro": {
+              "precision": 0.875,
+              "recall": 0.875,
+              "f1_score": 0.875
+            },
+            "macro": {
+              "f1_score": 0.8333333333333333
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_lymphocyte": {
+              "TP": 2,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_melanophage": {
+              "TP": 3,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.75,
+              "recall": 1.0,
+              "f1_score": 0.8571428571428571
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 4,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "micro": {
+              "precision": 0.5384615384615384,
+              "recall": 0.5384615384615384,
+              "f1_score": 0.5384615384615384
+            },
+            "macro": {
+              "f1_score": 0.3873015873015873
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1_score": 0.5
+            },
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_plasma_cell": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1_score": 0.75
+            },
+            "micro": {
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1_score": 0.75
+            },
+            "macro": {
+              "f1_score": 0.7833333333333333
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1_score": 0.5
+            },
+            "nuclei_neutrophil": {
+              "TP": 57,
+              "FP": 7,
+              "FN": 2,
+              "precision": 0.890625,
+              "recall": 0.9661016949152542,
+              "f1_score": 0.9268292682926829
+            },
+            "nuclei_plasma_cell": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.8
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_tumor": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 2,
+              "precision": 1.0,
+              "recall": 0.3333333333333333,
+              "f1_score": 0.5
+            },
+            "micro": {
+              "precision": 0.8857142857142857,
+              "recall": 0.8493150684931506,
+              "f1_score": 0.8671328671328671
+            },
+            "macro": {
+              "f1_score": 0.4847851335656213
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_melanophage": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_plasma_cell": {
+              "TP": 4,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.8,
+              "recall": 1.0,
+              "f1_score": 0.888888888888889
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1_score": 0.75
+            },
+            "micro": {
+              "precision": 0.8125,
+              "recall": 0.8125,
+              "f1_score": 0.8125
+            },
+            "macro": {
+              "f1_score": 0.7579365079365079
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 3,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.75,
+              "recall": 1.0,
+              "f1_score": 0.8571428571428571
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1_score": 0.5
+            },
+            "nuclei_stroma": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.75,
+              "f1_score": 0.8571428571428571
+            },
+            "micro": {
+              "precision": 0.8181818181818182,
+              "recall": 0.8181818181818182,
+              "f1_score": 0.8181818181818182
+            },
+            "macro": {
+              "f1_score": 0.8035714285714286
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.8
+            },
+            "micro": {
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "f1_score": 0.8333333333333334
+            },
+            "macro": {
+              "f1_score": 0.7333333333333333
+            }
+          },
+          {
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_lymphocyte": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_plasma_cell": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_tumor": {
+              "TP": 4,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "micro": {
+              "precision": 0.8571428571428571,
+              "recall": 0.8571428571428571,
+              "f1_score": 0.8571428571428571
+            },
+            "macro": {
+              "f1_score": 0.8222222222222223
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_endothelium": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_plasma_cell": {
+              "TP": 33,
+              "FP": 6,
+              "FN": 0,
+              "precision": 0.8461538461538461,
+              "recall": 1.0,
+              "f1_score": 0.9166666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_tumor": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 3,
+              "precision": 1.0,
+              "recall": 0.25,
+              "f1_score": 0.4
+            },
+            "micro": {
+              "precision": 0.8666666666666667,
+              "recall": 0.8666666666666667,
+              "f1_score": 0.8666666666666667
+            },
+            "macro": {
+              "f1_score": 0.7194444444444444
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_endothelium": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "micro": {
+              "precision": 0.875,
+              "recall": 0.875,
+              "f1_score": 0.875
+            },
+            "macro": {
+              "f1_score": 0.76
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_tumor": {
+              "TP": 4,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.8,
+              "recall": 1.0,
+              "f1_score": 0.888888888888889
+            },
+            "micro": {
+              "precision": 0.9090909090909091,
+              "recall": 0.9090909090909091,
+              "f1_score": 0.9090909090909091
+            },
+            "macro": {
+              "f1_score": 0.9111111111111111
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "micro": {
+              "precision": 0.875,
+              "recall": 0.875,
+              "f1_score": 0.875
+            },
+            "macro": {
+              "f1_score": 0.6
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_histiocyte": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_tumor": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 3,
+              "precision": 1.0,
+              "recall": 0.25,
+              "f1_score": 0.4
+            },
+            "micro": {
+              "precision": 0.5714285714285714,
+              "recall": 0.5714285714285714,
+              "f1_score": 0.5714285714285714
+            },
+            "macro": {
+              "f1_score": 0.4666666666666667
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_endothelium": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_stroma": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.75,
+              "f1_score": 0.8571428571428571
+            },
+            "micro": {
+              "precision": 0.9230769230769231,
+              "recall": 0.9230769230769231,
+              "f1_score": 0.9230769230769231
+            },
+            "macro": {
+              "f1_score": 0.9428571428571427
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1_score": 0.5
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 2,
+              "FN": 1,
+              "precision": 0.6,
+              "recall": 0.75,
+              "f1_score": 0.6666666666666665
+            },
+            "micro": {
+              "precision": 0.5714285714285714,
+              "recall": 0.5714285714285714,
+              "f1_score": 0.5714285714285714
+            },
+            "macro": {
+              "f1_score": 0.38888888888888884
+            }
+          },
+          {
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_epithelium": {
+              "TP": 7,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.875,
+              "recall": 1.0,
+              "f1_score": 0.9333333333333333
+            },
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.75,
+              "f1_score": 0.8571428571428571
+            },
+            "micro": {
+              "precision": 0.8947368421052632,
+              "recall": 0.8947368421052632,
+              "f1_score": 0.8947368421052632
+            },
+            "macro": {
+              "f1_score": 0.8761904761904762
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_epithelium": {
+              "TP": 0,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_melanophage": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_plasma_cell": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 4,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "micro": {
+              "precision": 0.7333333333333333,
+              "recall": 0.7333333333333333,
+              "f1_score": 0.7333333333333333
+            },
+            "macro": {
+              "f1_score": 0.5555555555555556
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1_score": 0.5
+            },
+            "nuclei_neutrophil": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_tumor": {
+              "TP": 4,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.8,
+              "recall": 1.0,
+              "f1_score": 0.888888888888889
+            },
+            "micro": {
+              "precision": 0.8181818181818182,
+              "recall": 0.8181818181818182,
+              "f1_score": 0.8181818181818182
+            },
+            "macro": {
+              "f1_score": 0.8111111111111111
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_endothelium": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_epithelium": {
+              "TP": 7,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.875,
+              "recall": 1.0,
+              "f1_score": 0.9333333333333333
+            },
+            "nuclei_histiocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_melanophage": {
+              "TP": 3,
+              "FP": 3,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_plasma_cell": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.75,
+              "f1_score": 0.8571428571428571
+            },
+            "micro": {
+              "precision": 0.8181818181818182,
+              "recall": 0.8181818181818182,
+              "f1_score": 0.8181818181818182
+            },
+            "macro": {
+              "f1_score": 0.7544973544973544
+            }
+          },
+          {
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 2,
+              "FN": 1,
+              "precision": 0.3333333333333333,
+              "recall": 0.5,
+              "f1_score": 0.4
+            },
+            "nuclei_melanophage": {
+              "TP": 4,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_plasma_cell": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.3333333333333333,
+              "recall": 1.0,
+              "f1_score": 0.5
+            },
+            "nuclei_tumor": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.8
+            },
+            "micro": {
+              "precision": 0.7333333333333333,
+              "recall": 0.7333333333333333,
+              "f1_score": 0.7333333333333333
+            },
+            "macro": {
+              "f1_score": 0.6238095238095237
+            }
+          },
+          {
+            "nuclei_endothelium": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_melanophage": {
+              "TP": 4,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 2,
+              "FN": 1,
+              "precision": 0.3333333333333333,
+              "recall": 0.5,
+              "f1_score": 0.4
+            },
+            "nuclei_tumor": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 2,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "micro": {
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.6666666666666666
+            },
+            "macro": {
+              "f1_score": 0.611111111111111
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_tumor": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.8
+            },
+            "micro": {
+              "precision": 0.8888888888888888,
+              "recall": 0.8888888888888888,
+              "f1_score": 0.8888888888888888
+            },
+            "macro": {
+              "f1_score": 0.8999999999999999
+            }
+          },
+          {
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_melanophage": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_stroma": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "micro": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "macro": {
+              "f1_score": 1.0
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_endothelium": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 3,
+              "FN": 0,
+              "precision": 0.4,
+              "recall": 1.0,
+              "f1_score": 0.5714285714285715
+            },
+            "nuclei_lymphocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_melanophage": {
+              "TP": 3,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_neutrophil": {
+              "TP": 6,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.8571428571428571,
+              "f1_score": 0.923076923076923
+            },
+            "nuclei_plasma_cell": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1_score": 0.5
+            },
+            "nuclei_tumor": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.8
+            },
+            "micro": {
+              "precision": 0.7916666666666666,
+              "recall": 0.7916666666666666,
+              "f1_score": 0.7916666666666666
+            },
+            "macro": {
+              "f1_score": 0.7549450549450549
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_lymphocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_melanophage": {
+              "TP": 4,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_plasma_cell": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_stroma": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_tumor": {
+              "TP": 4,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.8,
+              "recall": 1.0,
+              "f1_score": 0.888888888888889
+            },
+            "micro": {
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "f1_score": 0.8333333333333334
+            },
+            "macro": {
+              "f1_score": 0.6694444444444445
+            }
+          },
+          {
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_melanophage": {
+              "TP": 4,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.8
+            },
+            "micro": {
+              "precision": 0.8,
+              "recall": 0.8,
+              "f1_score": 0.8000000000000002
+            },
+            "macro": {
+              "f1_score": 0.7333333333333333
+            }
+          },
+          {
+            "nuclei_endothelium": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_epithelium": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_melanophage": {
+              "TP": 4,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_tumor": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 2,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "micro": {
+              "precision": 0.8,
+              "recall": 0.8,
+              "f1_score": 0.8000000000000002
+            },
+            "macro": {
+              "f1_score": 0.7333333333333334
+            }
+          },
+          {
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_lymphocyte": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_plasma_cell": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "micro": {
+              "precision": 0.7,
+              "recall": 0.7,
+              "f1_score": 0.7
+            },
+            "macro": {
+              "f1_score": 0.6666666666666666
+            }
+          },
+          {
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "micro": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "macro": {
+              "f1_score": 1.0
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_endothelium": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_epithelium": {
+              "TP": 7,
+              "FP": 3,
+              "FN": 0,
+              "precision": 0.7,
+              "recall": 1.0,
+              "f1_score": 0.8235294117647058
+            },
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_melanophage": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 2,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_tumor": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 2,
+              "precision": 0.5,
+              "recall": 0.3333333333333333,
+              "f1_score": 0.4
+            },
+            "micro": {
+              "precision": 0.7272727272727273,
+              "recall": 0.7272727272727273,
+              "f1_score": 0.7272727272727273
+            },
+            "macro": {
+              "f1_score": 0.7112745098039216
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 2,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_tumor": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 2,
+              "precision": 1.0,
+              "recall": 0.3333333333333333,
+              "f1_score": 0.5
+            },
+            "micro": {
+              "precision": 0.6923076923076923,
+              "recall": 0.6923076923076923,
+              "f1_score": 0.6923076923076923
+            },
+            "macro": {
+              "f1_score": 0.6833333333333332
+            }
+          },
+          {
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_epithelium": {
+              "TP": 7,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.7777777777777778,
+              "recall": 1.0,
+              "f1_score": 0.8750000000000001
+            },
+            "nuclei_lymphocyte": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_melanophage": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.8
+            },
+            "micro": {
+              "precision": 0.8,
+              "recall": 0.8,
+              "f1_score": 0.8000000000000002
+            },
+            "macro": {
+              "f1_score": 0.5569444444444445
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 1,
+              "FP": 4,
+              "FN": 1,
+              "precision": 0.2,
+              "recall": 0.5,
+              "f1_score": 0.28571428571428575
+            },
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_epithelium": {
+              "TP": 7,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_melanophage": {
+              "TP": 4,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.8,
+              "recall": 1.0,
+              "f1_score": 0.888888888888889
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.3333333333333333,
+              "recall": 1.0,
+              "f1_score": 0.5
+            },
+            "nuclei_tumor": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 4,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "micro": {
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.6666666666666666
+            },
+            "macro": {
+              "f1_score": 0.5176587301587301
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_endothelium": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1_score": 0.75
+            },
+            "micro": {
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1_score": 0.75
+            },
+            "macro": {
+              "f1_score": 0.6041666666666666
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_neutrophil": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.6666666666666666
+            },
+            "micro": {
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.6666666666666666
+            },
+            "macro": {
+              "f1_score": 0.611111111111111
+            }
+          },
+          {
+            "nuclei_endothelium": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_melanophage": {
+              "TP": 4,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.8,
+              "recall": 1.0,
+              "f1_score": 0.888888888888889
+            },
+            "nuclei_neutrophil": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_stroma": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_tumor": {
+              "TP": 4,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "micro": {
+              "precision": 0.9444444444444444,
+              "recall": 0.9444444444444444,
+              "f1_score": 0.9444444444444444
+            },
+            "macro": {
+              "f1_score": 0.9365079365079365
+            }
+          },
+          {
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_epithelium": {
+              "TP": 8,
+              "FP": 3,
+              "FN": 0,
+              "precision": 0.7272727272727273,
+              "recall": 1.0,
+              "f1_score": 0.8421052631578948
+            },
+            "nuclei_histiocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_lymphocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_melanophage": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_stroma": {
+              "TP": 2,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_tumor": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 4,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "micro": {
+              "precision": 0.7619047619047619,
+              "recall": 0.7619047619047619,
+              "f1_score": 0.7619047619047619
+            },
+            "macro": {
+              "f1_score": 0.7393483709273184
+            }
+          }
+        ],
+        "traces": {}
+      },
+      "model_diagnostics": {
+        "appearance_logit_norm": 4.9810747849313834,
+        "appearance_projection_norm": 56.86032425729852,
+        "biology_projection_norm": 1.5855801481949656,
+        "correction_norm": 2.244318359776547,
+        "interaction_norm": 32.35401294105932
+      }
+    },
+    "dev": {
+      "macro_f1": 0.45296832877827004,
+      "macro_precision": 0.4811257257789028,
+      "macro_recall": 0.4633820887772019,
+      "balanced_accuracy_fixed10": 0.4633820887772019,
+      "accuracy": 0.4897260273972603,
+      "ece15": 0.06815455527338264,
+      "nll": 1.5717319250106812,
+      "support": [
+        77,
+        41,
+        19,
+        24,
+        26,
+        5,
+        21,
+        29,
+        25,
+        25
+      ],
+      "predicted": [
+        79,
+        26,
+        10,
+        19,
+        43,
+        5,
+        33,
+        14,
+        33,
+        30
+      ],
+      "precision": [
+        0.6455696202531646,
+        0.5384615384615384,
+        0.4,
+        0.3157894736842105,
+        0.46511627906976744,
+        0.6,
+        0.24242424242424243,
+        0.7857142857142857,
+        0.48484848484848486,
+        0.3333333333333333
+      ],
+      "recall": [
+        0.6623376623376623,
+        0.34146341463414637,
+        0.21052631578947367,
+        0.25,
+        0.7692307692307693,
+        0.6,
+        0.38095238095238093,
+        0.3793103448275862,
+        0.64,
+        0.4
+      ],
+      "f1": [
+        0.6538461538461539,
+        0.417910447761194,
+        0.27586206896551724,
+        0.27906976744186046,
+        0.5797101449275363,
+        0.6,
+        0.2962962962962963,
+        0.5116279069767442,
+        0.5517241379310345,
+        0.36363636363636365
+      ],
+      "confusion": [
+        [
+          51,
+          1,
+          0,
+          2,
+          5,
+          0,
+          4,
+          2,
+          4,
+          8
+        ],
+        [
+          1,
+          14,
+          2,
+          5,
+          3,
+          0,
+          4,
+          0,
+          4,
+          8
+        ],
+        [
+          10,
+          3,
+          4,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          2,
+          6,
+          5,
+          0,
+          3,
+          0,
+          4,
+          1
+        ],
+        [
+          4,
+          0,
+          0,
+          1,
+          20,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          4,
+          2,
+          0,
+          2,
+          2,
+          0,
+          8,
+          0,
+          2,
+          1
+        ],
+        [
+          5,
+          2,
+          0,
+          0,
+          3,
+          0,
+          6,
+          11,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          4,
+          2,
+          2,
+          0,
+          16,
+          0
+        ],
+        [
+          1,
+          2,
+          2,
+          2,
+          0,
+          0,
+          5,
+          1,
+          2,
+          10
+        ]
+      ],
+      "missing_classes": [],
+      "puma": {
+        "evaluation_contract_id": "puma_public_track2_nuclei_class_first_greedy_dynamic_avg_2026",
+        "public_dynamic": {
+          "macro_precision": 0.25014696656001,
+          "macro_recall": 0.25458074534161496,
+          "macro_f1": 0.23078098230272137,
+          "precision_by_class": {
+            "nuclei_endothelium": 0.322463768115942,
+            "nuclei_lymphocyte": 0.45652173913043476,
+            "nuclei_stroma": 0.13333333333333333,
+            "nuclei_tumor": 0.8041611769872639,
+            "nuclei_apoptosis": 0.17681159420289855,
+            "nuclei_histiocyte": 0.0898550724637681,
+            "nuclei_neutrophil": 0.08695652173913043,
+            "nuclei_plasma_cell": 0.10144927536231885,
+            "nuclei_melanophage": 0.18861283643892338,
+            "nuclei_epithelium": 0.14130434782608695
+          },
+          "recall_by_class": {
+            "nuclei_endothelium": 0.3695652173913043,
+            "nuclei_lymphocyte": 0.30434782608695654,
+            "nuclei_stroma": 0.21739130434782608,
+            "nuclei_tumor": 0.6666666666666667,
+            "nuclei_apoptosis": 0.2826086956521739,
+            "nuclei_histiocyte": 0.15217391304347827,
+            "nuclei_neutrophil": 0.08695652173913043,
+            "nuclei_plasma_cell": 0.08695652173913043,
+            "nuclei_melanophage": 0.3115942028985507,
+            "nuclei_epithelium": 0.06754658385093167
+          },
+          "f1_by_class": {
+            "nuclei_endothelium": 0.3391304347826087,
+            "nuclei_lymphocyte": 0.3550724637681159,
+            "nuclei_stroma": 0.15890269151138717,
+            "nuclei_tumor": 0.6688048666309535,
+            "nuclei_apoptosis": 0.2002070393374741,
+            "nuclei_histiocyte": 0.10745341614906832,
+            "nuclei_neutrophil": 0.08695652173913043,
+            "nuclei_plasma_cell": 0.08502415458937197,
+            "nuclei_melanophage": 0.2258234519104084,
+            "nuclei_epithelium": 0.08043478260869565
+          },
+          "class_universe": [
+            "nuclei_endothelium",
+            "nuclei_lymphocyte",
+            "nuclei_stroma",
+            "nuclei_tumor",
+            "nuclei_apoptosis",
+            "nuclei_histiocyte",
+            "nuclei_neutrophil",
+            "nuclei_plasma_cell",
+            "nuclei_melanophage",
+            "nuclei_epithelium"
+          ]
+        },
+        "fixed10": {
+          "macro_precision": 0.25014696656001006,
+          "macro_recall": 0.2545807453416149,
+          "macro_f1": 0.23078098230272137,
+          "precision_by_class": {
+            "nuclei_tumor": 0.8041611769872639,
+            "nuclei_lymphocyte": 0.45652173913043476,
+            "nuclei_plasma_cell": 0.10144927536231885,
+            "nuclei_histiocyte": 0.0898550724637681,
+            "nuclei_melanophage": 0.18861283643892338,
+            "nuclei_neutrophil": 0.08695652173913043,
+            "nuclei_stroma": 0.13333333333333333,
+            "nuclei_endothelium": 0.322463768115942,
+            "nuclei_epithelium": 0.14130434782608695,
+            "nuclei_apoptosis": 0.17681159420289855
+          },
+          "recall_by_class": {
+            "nuclei_tumor": 0.6666666666666667,
+            "nuclei_lymphocyte": 0.30434782608695654,
+            "nuclei_plasma_cell": 0.08695652173913043,
+            "nuclei_histiocyte": 0.15217391304347827,
+            "nuclei_melanophage": 0.3115942028985507,
+            "nuclei_neutrophil": 0.08695652173913043,
+            "nuclei_stroma": 0.21739130434782608,
+            "nuclei_endothelium": 0.3695652173913043,
+            "nuclei_epithelium": 0.06754658385093167,
+            "nuclei_apoptosis": 0.2826086956521739
+          },
+          "f1_by_class": {
+            "nuclei_tumor": 0.6688048666309535,
+            "nuclei_lymphocyte": 0.3550724637681159,
+            "nuclei_plasma_cell": 0.08502415458937197,
+            "nuclei_histiocyte": 0.10745341614906832,
+            "nuclei_melanophage": 0.2258234519104084,
+            "nuclei_neutrophil": 0.08695652173913043,
+            "nuclei_stroma": 0.15890269151138717,
+            "nuclei_endothelium": 0.3391304347826087,
+            "nuclei_epithelium": 0.08043478260869565,
+            "nuclei_apoptosis": 0.2002070393374741
+          },
+          "class_universe": [
+            "nuclei_tumor",
+            "nuclei_lymphocyte",
+            "nuclei_plasma_cell",
+            "nuclei_histiocyte",
+            "nuclei_melanophage",
+            "nuclei_neutrophil",
+            "nuclei_stroma",
+            "nuclei_endothelium",
+            "nuclei_epithelium",
+            "nuclei_apoptosis"
+          ]
+        },
+        "summed": {
+          "macro_precision": 0.48112572577890267,
+          "macro_recall": 0.46338208877720194,
+          "macro_f1": 0.4529683287782699,
+          "precision_by_class": {
+            "nuclei_tumor": 0.6455696202531646,
+            "nuclei_lymphocyte": 0.5384615384615384,
+            "nuclei_plasma_cell": 0.4,
+            "nuclei_histiocyte": 0.3157894736842105,
+            "nuclei_melanophage": 0.46511627906976744,
+            "nuclei_neutrophil": 0.6,
+            "nuclei_stroma": 0.24242424242424243,
+            "nuclei_endothelium": 0.48484848484848486,
+            "nuclei_epithelium": 0.7857142857142857,
+            "nuclei_apoptosis": 0.3333333333333333
+          },
+          "recall_by_class": {
+            "nuclei_tumor": 0.6623376623376623,
+            "nuclei_lymphocyte": 0.34146341463414637,
+            "nuclei_plasma_cell": 0.21052631578947367,
+            "nuclei_histiocyte": 0.25,
+            "nuclei_melanophage": 0.7692307692307693,
+            "nuclei_neutrophil": 0.6,
+            "nuclei_stroma": 0.38095238095238093,
+            "nuclei_endothelium": 0.64,
+            "nuclei_epithelium": 0.3793103448275862,
+            "nuclei_apoptosis": 0.4
+          },
+          "f1_by_class": {
+            "nuclei_tumor": 0.6538461538461539,
+            "nuclei_lymphocyte": 0.41791044776119407,
+            "nuclei_plasma_cell": 0.27586206896551724,
+            "nuclei_histiocyte": 0.27906976744186046,
+            "nuclei_melanophage": 0.5797101449275363,
+            "nuclei_neutrophil": 0.6,
+            "nuclei_stroma": 0.2962962962962963,
+            "nuclei_endothelium": 0.5517241379310344,
+            "nuclei_epithelium": 0.5116279069767441,
+            "nuclei_apoptosis": 0.3636363636363636
+          },
+          "class_metrics": {
+            "nuclei_tumor": {
+              "TP": 51,
+              "FP": 28,
+              "FN": 26,
+              "precision": 0.6455696202531646,
+              "recall": 0.6623376623376623,
+              "f1_score": 0.6538461538461539
+            },
+            "nuclei_lymphocyte": {
+              "TP": 14,
+              "FP": 12,
+              "FN": 27,
+              "precision": 0.5384615384615384,
+              "recall": 0.34146341463414637,
+              "f1_score": 0.41791044776119407
+            },
+            "nuclei_plasma_cell": {
+              "TP": 4,
+              "FP": 6,
+              "FN": 15,
+              "precision": 0.4,
+              "recall": 0.21052631578947367,
+              "f1_score": 0.27586206896551724
+            },
+            "nuclei_histiocyte": {
+              "TP": 6,
+              "FP": 13,
+              "FN": 18,
+              "precision": 0.3157894736842105,
+              "recall": 0.25,
+              "f1_score": 0.27906976744186046
+            },
+            "nuclei_melanophage": {
+              "TP": 20,
+              "FP": 23,
+              "FN": 6,
+              "precision": 0.46511627906976744,
+              "recall": 0.7692307692307693,
+              "f1_score": 0.5797101449275363
+            },
+            "nuclei_neutrophil": {
+              "TP": 3,
+              "FP": 2,
+              "FN": 2,
+              "precision": 0.6,
+              "recall": 0.6,
+              "f1_score": 0.6
+            },
+            "nuclei_stroma": {
+              "TP": 8,
+              "FP": 25,
+              "FN": 13,
+              "precision": 0.24242424242424243,
+              "recall": 0.38095238095238093,
+              "f1_score": 0.2962962962962963
+            },
+            "nuclei_endothelium": {
+              "TP": 16,
+              "FP": 17,
+              "FN": 9,
+              "precision": 0.48484848484848486,
+              "recall": 0.64,
+              "f1_score": 0.5517241379310344
+            },
+            "nuclei_epithelium": {
+              "TP": 11,
+              "FP": 3,
+              "FN": 18,
+              "precision": 0.7857142857142857,
+              "recall": 0.3793103448275862,
+              "f1_score": 0.5116279069767441
+            },
+            "nuclei_apoptosis": {
+              "TP": 10,
+              "FP": 20,
+              "FN": 15,
+              "precision": 0.3333333333333333,
+              "recall": 0.4,
+              "f1_score": 0.3636363636363636
+            }
+          },
+          "class_universe": [
+            "nuclei_tumor",
+            "nuclei_lymphocyte",
+            "nuclei_plasma_cell",
+            "nuclei_histiocyte",
+            "nuclei_melanophage",
+            "nuclei_neutrophil",
+            "nuclei_stroma",
+            "nuclei_endothelium",
+            "nuclei_epithelium",
+            "nuclei_apoptosis"
+          ]
+        },
+        "roi_metrics": [
+          {
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "micro": {
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1_score": 0.75
+            },
+            "macro": {
+              "f1_score": 0.5833333333333333
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 2,
+              "FP": 3,
+              "FN": 0,
+              "precision": 0.4,
+              "recall": 1.0,
+              "f1_score": 0.5714285714285715
+            },
+            "nuclei_endothelium": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.8
+            },
+            "micro": {
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1_score": 0.5
+            },
+            "macro": {
+              "f1_score": 0.2742857142857143
+            }
+          },
+          {
+            "nuclei_endothelium": {
+              "TP": 0,
+              "FP": 2,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 0,
+              "FP": 2,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_neutrophil": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_plasma_cell": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 2,
+              "precision": 0.5,
+              "recall": 0.3333333333333333,
+              "f1_score": 0.4
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.75,
+              "recall": 1.0,
+              "f1_score": 0.8571428571428571
+            },
+            "micro": {
+              "precision": 0.36363636363636365,
+              "recall": 0.36363636363636365,
+              "f1_score": 0.36363636363636365
+            },
+            "macro": {
+              "f1_score": 0.17959183673469387
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 1,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.3333333333333333,
+              "recall": 1.0,
+              "f1_score": 0.5
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.75,
+              "f1_score": 0.8571428571428571
+            },
+            "micro": {
+              "precision": 0.7142857142857143,
+              "recall": 0.7142857142857143,
+              "f1_score": 0.7142857142857143
+            },
+            "macro": {
+              "f1_score": 0.6746031746031745
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 1,
+              "FP": 2,
+              "FN": 1,
+              "precision": 0.3333333333333333,
+              "recall": 0.5,
+              "f1_score": 0.4
+            },
+            "nuclei_histiocyte": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1_score": 0.5
+            },
+            "nuclei_plasma_cell": {
+              "TP": 1,
+              "FP": 2,
+              "FN": 5,
+              "precision": 0.3333333333333333,
+              "recall": 0.16666666666666666,
+              "f1_score": 0.2222222222222222
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 5,
+              "FN": 0,
+              "precision": 0.375,
+              "recall": 1.0,
+              "f1_score": 0.5454545454545454
+            },
+            "micro": {
+              "precision": 0.375,
+              "recall": 0.375,
+              "f1_score": 0.375
+            },
+            "macro": {
+              "f1_score": 0.27794612794612794
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1_score": 0.5
+            },
+            "nuclei_histiocyte": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_neutrophil": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.75,
+              "recall": 1.0,
+              "f1_score": 0.8571428571428571
+            },
+            "micro": {
+              "precision": 0.5714285714285714,
+              "recall": 0.5714285714285714,
+              "f1_score": 0.5714285714285714
+            },
+            "macro": {
+              "f1_score": 0.3392857142857143
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 1,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.3333333333333333,
+              "recall": 1.0,
+              "f1_score": 0.5
+            },
+            "nuclei_lymphocyte": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_melanophage": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 3,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_neutrophil": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_plasma_cell": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 6,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 2,
+              "FP": 9,
+              "FN": 1,
+              "precision": 0.18181818181818182,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.28571428571428575
+            },
+            "micro": {
+              "precision": 0.3333333333333333,
+              "recall": 0.3333333333333333,
+              "f1_score": 0.3333333333333333
+            },
+            "macro": {
+              "f1_score": 0.38359788359788355
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_melanophage": {
+              "TP": 3,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.6,
+              "recall": 1.0,
+              "f1_score": 0.7499999999999999
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 3,
+              "precision": 1.0,
+              "recall": 0.25,
+              "f1_score": 0.4
+            },
+            "micro": {
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.6666666666666666
+            },
+            "macro": {
+              "f1_score": 0.5805555555555555
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 0,
+              "FP": 2,
+              "FN": 3,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 2,
+              "FP": 3,
+              "FN": 0,
+              "precision": 0.4,
+              "recall": 1.0,
+              "f1_score": 0.5714285714285715
+            },
+            "nuclei_lymphocyte": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_plasma_cell": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_tumor": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 2,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "micro": {
+              "precision": 0.5333333333333333,
+              "recall": 0.5333333333333333,
+              "f1_score": 0.5333333333333333
+            },
+            "macro": {
+              "f1_score": 0.5578231292517006
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_endothelium": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1_score": 0.5
+            },
+            "nuclei_melanophage": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_neutrophil": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_plasma_cell": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_tumor": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 3,
+              "precision": 1.0,
+              "recall": 0.25,
+              "f1_score": 0.4
+            },
+            "micro": {
+              "precision": 0.3333333333333333,
+              "recall": 0.3333333333333333,
+              "f1_score": 0.3333333333333333
+            },
+            "macro": {
+              "f1_score": 0.19583333333333333
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 1,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.3333333333333333,
+              "recall": 1.0,
+              "f1_score": 0.5
+            },
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "micro": {
+              "precision": 0.7777777777777778,
+              "recall": 0.7777777777777778,
+              "f1_score": 0.7777777777777778
+            },
+            "macro": {
+              "f1_score": 0.6333333333333333
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_melanophage": {
+              "TP": 4,
+              "FP": 3,
+              "FN": 0,
+              "precision": 0.5714285714285714,
+              "recall": 1.0,
+              "f1_score": 0.7272727272727273
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_tumor": {
+              "TP": 4,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.8,
+              "recall": 1.0,
+              "f1_score": 0.888888888888889
+            },
+            "micro": {
+              "precision": 0.6875,
+              "recall": 0.6875,
+              "f1_score": 0.6875
+            },
+            "macro": {
+              "f1_score": 0.468975468975469
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_endothelium": {
+              "TP": 0,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_neutrophil": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_tumor": {
+              "TP": 4,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "micro": {
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.6666666666666666
+            },
+            "macro": {
+              "f1_score": 0.4
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_endothelium": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 1,
+              "FP": 2,
+              "FN": 1,
+              "precision": 0.3333333333333333,
+              "recall": 0.5,
+              "f1_score": 0.4
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_melanophage": {
+              "TP": 2,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 4,
+              "FN": 1,
+              "precision": 0.2,
+              "recall": 0.5,
+              "f1_score": 0.28571428571428575
+            },
+            "nuclei_tumor": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 2,
+              "precision": 1.0,
+              "recall": 0.3333333333333333,
+              "f1_score": 0.5
+            },
+            "micro": {
+              "precision": 0.4,
+              "recall": 0.4,
+              "f1_score": 0.4000000000000001
+            },
+            "macro": {
+              "f1_score": 0.35986394557823126
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_endothelium": {
+              "TP": 1,
+              "FP": 3,
+              "FN": 1,
+              "precision": 0.25,
+              "recall": 0.5,
+              "f1_score": 0.3333333333333333
+            },
+            "nuclei_histiocyte": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1_score": 0.5
+            },
+            "nuclei_melanophage": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.8
+            },
+            "nuclei_stroma": {
+              "TP": 2,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_tumor": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 2,
+              "precision": 1.0,
+              "recall": 0.3333333333333333,
+              "f1_score": 0.5
+            },
+            "micro": {
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1_score": 0.5
+            },
+            "macro": {
+              "f1_score": 0.39999999999999997
+            }
+          },
+          {
+            "nuclei_endothelium": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_melanophage": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 4,
+              "FN": 1,
+              "precision": 0.2,
+              "recall": 0.5,
+              "f1_score": 0.28571428571428575
+            },
+            "nuclei_tumor": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.6666666666666666,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.6666666666666666
+            },
+            "micro": {
+              "precision": 0.3,
+              "recall": 0.3,
+              "f1_score": 0.3
+            },
+            "macro": {
+              "f1_score": 0.15873015873015872
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 3,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_epithelium": {
+              "TP": 6,
+              "FP": 2,
+              "FN": 1,
+              "precision": 0.75,
+              "recall": 0.8571428571428571,
+              "f1_score": 0.7999999999999999
+            },
+            "nuclei_histiocyte": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1_score": 0.5
+            },
+            "nuclei_melanophage": {
+              "TP": 3,
+              "FP": 3,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1_score": 0.5
+            },
+            "nuclei_tumor": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1_score": 0.8
+            },
+            "micro": {
+              "precision": 0.625,
+              "recall": 0.625,
+              "f1_score": 0.625
+            },
+            "macro": {
+              "f1_score": 0.5333333333333333
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_endothelium": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_epithelium": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 7,
+              "precision": 0.5,
+              "recall": 0.125,
+              "f1_score": 0.2
+            },
+            "nuclei_histiocyte": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 2,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "nuclei_melanophage": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 4,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 2,
+              "FP": 7,
+              "FN": 2,
+              "precision": 0.2222222222222222,
+              "recall": 0.5,
+              "f1_score": 0.30769230769230765
+            },
+            "micro": {
+              "precision": 0.3157894736842105,
+              "recall": 0.3157894736842105,
+              "f1_score": 0.3157894736842105
+            },
+            "macro": {
+              "f1_score": 0.31346153846153846
+            }
+          },
+          {
+            "nuclei_endothelium": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_histiocyte": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.5,
+              "recall": 0.5,
+              "f1_score": 0.5
+            },
+            "nuclei_melanophage": {
+              "TP": 4,
+              "FP": 4,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 0,
+              "FN": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1_score": 1.0
+            },
+            "micro": {
+              "precision": 0.5714285714285714,
+              "recall": 0.5714285714285714,
+              "f1_score": 0.5714285714285714
+            },
+            "macro": {
+              "f1_score": 0.3611111111111111
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_endothelium": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_plasma_cell": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 2,
+              "precision": 1.0,
+              "recall": 0.3333333333333333,
+              "f1_score": 0.5
+            },
+            "micro": {
+              "precision": 0.5714285714285714,
+              "recall": 0.5714285714285714,
+              "f1_score": 0.5714285714285714
+            },
+            "macro": {
+              "f1_score": 0.39333333333333337
+            }
+          },
+          {
+            "nuclei_endothelium": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_epithelium": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 6,
+              "precision": 1.0,
+              "recall": 0.14285714285714285,
+              "f1_score": 0.25
+            },
+            "nuclei_melanophage": {
+              "TP": 1,
+              "FP": 5,
+              "FN": 1,
+              "precision": 0.16666666666666666,
+              "recall": 0.5,
+              "f1_score": 0.25
+            },
+            "nuclei_stroma": {
+              "TP": 1,
+              "FP": 5,
+              "FN": 1,
+              "precision": 0.16666666666666666,
+              "recall": 0.5,
+              "f1_score": 0.25
+            },
+            "nuclei_tumor": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 2,
+              "precision": 0.5,
+              "recall": 0.3333333333333333,
+              "f1_score": 0.4
+            },
+            "micro": {
+              "precision": 0.26666666666666666,
+              "recall": 0.26666666666666666,
+              "f1_score": 0.26666666666666666
+            },
+            "macro": {
+              "f1_score": 0.22999999999999998
+            }
+          },
+          {
+            "nuclei_endothelium": {
+              "TP": 2,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1_score": 0.8
+            },
+            "nuclei_lymphocyte": {
+              "TP": 1,
+              "FP": 0,
+              "FN": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_tumor": {
+              "TP": 3,
+              "FP": 1,
+              "FN": 1,
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1_score": 0.75
+            },
+            "micro": {
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1_score": 0.75
+            },
+            "macro": {
+              "f1_score": 0.7388888888888889
+            }
+          },
+          {
+            "nuclei_apoptosis": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_endothelium": {
+              "TP": 0,
+              "FP": 3,
+              "FN": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_epithelium": {
+              "TP": 3,
+              "FP": 0,
+              "FN": 4,
+              "precision": 1.0,
+              "recall": 0.42857142857142855,
+              "f1_score": 0.6
+            },
+            "nuclei_histiocyte": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_lymphocyte": {
+              "TP": 0,
+              "FP": 6,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_melanophage": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 0,
+              "precision": 0.5,
+              "recall": 1.0,
+              "f1_score": 0.6666666666666666
+            },
+            "nuclei_plasma_cell": {
+              "TP": 0,
+              "FP": 0,
+              "FN": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_stroma": {
+              "TP": 0,
+              "FP": 1,
+              "FN": 2,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1_score": 0.0
+            },
+            "nuclei_tumor": {
+              "TP": 1,
+              "FP": 1,
+              "FN": 2,
+              "precision": 0.5,
+              "recall": 0.3333333333333333,
+              "f1_score": 0.4
+            },
+            "micro": {
+              "precision": 0.2777777777777778,
+              "recall": 0.2777777777777778,
+              "f1_score": 0.2777777777777778
+            },
+            "macro": {
+              "f1_score": 0.18518518518518517
+            }
+          }
+        ],
+        "traces": {}
+      },
+      "model_diagnostics": {
+        "appearance_logit_norm": 4.425135886832459,
+        "appearance_projection_norm": 56.91925884926156,
+        "biology_projection_norm": 1.5364626401091275,
+        "correction_norm": 2.0619721608619166,
+        "interaction_norm": 31.113648715084548
+      }
+    },
+    "selection_score": 0.23078098230272137,
+    "exposure": [
+      50,
+      68,
+      63,
+      65,
+      59,
+      71,
+      47,
+      65,
+      69,
+      51
+    ],
+    "unique_examples": 367,
+    "repeat_fraction": 0.3963815789473685,
+    "unique_examples_by_class": [
+      43,
+      43,
+      40,
+      34,
+      31,
+      46,
+      32,
+      35,
+      34,
+      29
+    ],
+    "repeat_fraction_by_class": [
+      0.14,
+      0.36764705882352944,
+      0.3650793650793651,
+      0.4769230769230769,
+      0.47457627118644063,
+      0.352112676056338,
+      0.3191489361702128,
+      0.46153846153846156,
+      0.5072463768115942,
+      0.43137254901960786
+    ],
+    "unique_groups": 38,
+    "grad_norm_mean": 3.8424449443817137,
+    "generalization_gap_macro_f1": 0.353079750335444,
+    "generalization_gap_loss": 0.8695188164710999,
+    "parameter_norms": {
+      "W_weight_norm": 2.1575515270233154,
+      "W_bias_norm": 0.028879323974251747,
+      "Ph_weight_norm": 3.0252132415771484,
+      "Pb_weight_norm": 1.693666934967041,
+      "R_weight_norm": 0.1522752195596695
+    },
+    "lr": [
+      0.00025159171845596324
+    ]
+  },
+  "decoupled": null,
+  "final_model_checkpoint": "checkpoints/best.pt",
+  "final_model_score": 0.23078098230272137
+}

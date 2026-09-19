@@ -1,0 +1,82 @@
+{
+  "experiment_id": "p6_C_cached_crt_reset",
+  "manifest": "C:\\Users\\Hngk\\Documents\\Codex\\PUMA_STAGE2_PROMPT6\\DATA_PRESELECTION\\SELECTION\\D900.csv",
+  "output_dir": "C:\\Users\\Hngk\\Documents\\Codex\\2026-09-07\\use-the-autoresearch-skill-x20-https\\outputs\\PUMA_STAGE2_RESEARCH_PROMPTS_1_TO_4\\PROMPT_6\\EXPERIMENTS",
+  "uni2_weights": null,
+  "cached_features": "C:\\Users\\Hngk\\Documents\\Codex\\PUMA_STAGE2_PROMPT6\\DATA_PRESELECTION\\D900_cls.npy",
+  "cached_tokens": null,
+  "tier_a": "C:\\Users\\Hngk\\Documents\\Codex\\PUMA_STAGE2_PROMPT6\\DATA_PRESELECTION\\D900_tierA.npy",
+  "fov": 96,
+  "seed": 17,
+  "device": "cpu",
+  "num_workers": 0,
+  "selection_metric": "roi_macro_f1",
+  "augmentation": {
+    "geometric": false,
+    "stain_mode": "none",
+    "stain_strength": 0.0,
+    "coordinate_jitter_sigma": 0.0,
+    "coordinate_jitter_clip": 0.0
+  },
+  "sampler": {
+    "mode": "inverse",
+    "alpha": 1.0,
+    "num_samples_multiplier": 1.0
+  },
+  "loss": {
+    "kind": "ce",
+    "tau": 0.0,
+    "label_smoothing": 0.0
+  },
+  "model": {
+    "representation": "cls",
+    "gaussian_sigma": 1.5,
+    "neighborhood_radius": 1,
+    "interaction_rank": 8,
+    "representation_dropout": 0.0,
+    "interaction_dropout": 0.0,
+    "tier_a_dropout": 0.0,
+    "use_tier_a": true,
+    "scalar_mix_init": 0.5
+  },
+  "optimizer": {
+    "lr": 0.001,
+    "weight_decay": 0.01,
+    "batch_size": 64,
+    "accumulation_steps": 1,
+    "max_epochs": 10,
+    "patience": 10,
+    "min_delta": 0.0001,
+    "scheduler": "constant",
+    "warmup_fraction": 0.05,
+    "min_lr_ratio": 0.1,
+    "grad_clip": 1.0,
+    "amp": false,
+    "decay_bias_and_vectors": true,
+    "selection_mode": "fixed_final"
+  },
+  "encoder": {
+    "adaptation": "frozen",
+    "allow_adaptation": false,
+    "adapter_lr": 1e-05,
+    "lora_rank": 4,
+    "lora_alpha": 8.0,
+    "last_blocks": 2
+  },
+  "decoupled": {
+    "enabled": true,
+    "retrain_epochs": 5,
+    "retrain_lr": 0.001,
+    "reset_classifier": true,
+    "sampler": {
+      "mode": "inverse",
+      "alpha": 1.0,
+      "num_samples_multiplier": 1.0
+    },
+    "loss": {
+      "kind": "ce",
+      "tau": 0.0,
+      "label_smoothing": 0.0
+    }
+  }
+}

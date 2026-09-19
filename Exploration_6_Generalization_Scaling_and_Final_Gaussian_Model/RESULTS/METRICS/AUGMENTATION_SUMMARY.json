@@ -1,0 +1,132 @@
+{
+  "status": "NINE_RUNS_COMPLETE_REQUIRES_SCIENTIFIC_REVIEW_BEFORE_NEXT_STAGE",
+  "parity": [
+    {
+      "seed": 17,
+      "max_abs_logit_error": 2.384185791015625e-06,
+      "mean_abs_logit_error": 4.6351553351087205e-07,
+      "prediction_disagreements": 0,
+      "scope": "Raw physical1 accumulation64 versus cached batch64; identical ordered DEV UIDs; diagnostic measured parity, no exact-float claim"
+    },
+    {
+      "seed": 29,
+      "max_abs_logit_error": 2.86102294921875e-06,
+      "mean_abs_logit_error": 4.381647045192949e-07,
+      "prediction_disagreements": 0,
+      "scope": "Raw physical1 accumulation64 versus cached batch64; identical ordered DEV UIDs; diagnostic measured parity, no exact-float claim"
+    },
+    {
+      "seed": 43,
+      "max_abs_logit_error": 0.00040543079376220703,
+      "mean_abs_logit_error": 1.22800602184725e-05,
+      "prediction_disagreements": 0,
+      "scope": "Raw physical1 accumulation64 versus cached batch64; identical ordered DEV UIDs; diagnostic measured parity, no exact-float claim"
+    }
+  ],
+  "comparisons": [
+    {
+      "candidate": "AUG1",
+      "control": "AUG0",
+      "roi_delta": -0.005138888888888887,
+      "roi_ci95": [
+        -0.01293799603174603,
+        0.003295634920634911
+      ],
+      "positive_seeds": 1,
+      "class_recall_delta": {
+        "tumor": -0.005747126436781584,
+        "lymphocyte": 3.700743415417188e-17,
+        "plasma_cell": -0.018518518518518517,
+        "histiocyte": -0.018518518518518528,
+        "melanophage": -0.11111111111111112,
+        "neutrophil": 1.850371707708594e-17,
+        "stroma": 0.0740740740740741,
+        "epithelium": -0.018518518518518528,
+        "endothelium": 0.0,
+        "apoptosis": -0.07407407407407406
+      },
+      "class_harm": [
+        "melanophage"
+      ],
+      "gap_change": -0.04009411975441707,
+      "passes_predeclared_numeric_guards": false
+    },
+    {
+      "candidate": "AUG2",
+      "control": "AUG0",
+      "roi_delta": 0.0033333333333333344,
+      "roi_ci95": [
+        -0.005615575396825397,
+        0.012262400793650792
+      ],
+      "positive_seeds": 2,
+      "class_recall_delta": {
+        "tumor": 0.005747126436781658,
+        "lymphocyte": 0.014492753623188434,
+        "plasma_cell": 0.0,
+        "histiocyte": 0.03703703703703703,
+        "melanophage": 0.0,
+        "neutrophil": 1.850371707708594e-17,
+        "stroma": 0.018518518518518535,
+        "epithelium": 0.0,
+        "endothelium": -0.018518518518518528,
+        "apoptosis": -0.018518518518518507
+      },
+      "class_harm": [],
+      "gap_change": -0.05987409376051108,
+      "passes_predeclared_numeric_guards": false
+    },
+    {
+      "candidate": "AUG2",
+      "control": "AUG1",
+      "roi_delta": 0.008472222222222223,
+      "roi_ci95": [
+        0.0005952380952380964,
+        0.016646825396825393
+      ],
+      "positive_seeds": 3,
+      "class_recall_delta": {
+        "tumor": 0.01149425287356324,
+        "lymphocyte": 0.014492753623188396,
+        "plasma_cell": 0.018518518518518517,
+        "histiocyte": 0.05555555555555555,
+        "melanophage": 0.11111111111111112,
+        "neutrophil": 0.0,
+        "stroma": -0.05555555555555556,
+        "epithelium": 0.018518518518518528,
+        "endothelium": -0.018518518518518528,
+        "apoptosis": 0.055555555555555546
+      },
+      "class_harm": [],
+      "gap_change": -0.01977997400609401,
+      "passes_predeclared_numeric_guards": true
+    }
+  ],
+  "means": {
+    "AUG0": {
+      "train_f1": 0.9061115777574384,
+      "dev_f1": 0.42779995019021405,
+      "roi_f1": 0.14977040816326528,
+      "gap": 0.47831162756722434,
+      "dev_nll": 1.8551275332768757,
+      "ece15": 0.16383957394847162
+    },
+    "AUG1": {
+      "train_f1": 0.8494796284971041,
+      "dev_f1": 0.41126212068429674,
+      "roi_f1": 0.1446315192743764,
+      "gap": 0.43821750781280727,
+      "dev_nll": 1.8143365383148193,
+      "ece15": 0.1731612327363756
+    },
+    "AUG2": {
+      "train_f1": 0.8493568363480306,
+      "dev_f1": 0.43091930254131733,
+      "roi_f1": 0.15310374149659864,
+      "gap": 0.4184375338067133,
+      "dev_nll": 1.8069486618041992,
+      "ece15": 0.15697430683506863
+    }
+  },
+  "holdouts_opened": false
+}

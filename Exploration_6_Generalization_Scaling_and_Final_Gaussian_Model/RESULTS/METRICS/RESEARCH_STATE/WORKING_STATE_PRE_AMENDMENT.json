@@ -1,0 +1,81 @@
+{
+  "status": "BLOCKED_DATA_ADMISSION",
+  "prompt6_complete": false,
+  "current_retained_baseline": "Prompt3_A5; historical retention only, no new efficacy claim",
+  "architecture": "z = W h + a + R((P_h h) * (P_b b)); h=non-affine LN(CLS1536), TRAIN-standardized Tier-A16; rank8",
+  "trainable_parameters": 27866,
+  "new_research_training_runs": 0,
+  "qa_synthetic_tests_are_not_research_trials": true,
+  "positive_prior_evidence": [
+    "Historical A5 retained",
+    "Prompt4 local/global-local internal gains require fresh replication"
+  ],
+  "negative_evidence": [
+    "Exact Prompt4 Q/V LoRA r8 alpha16 last4 five-epoch configuration showed no ROI-F1 gain",
+    "Selected local-only representation failed class guards"
+  ],
+  "unresolved_hypotheses": [
+    "Independent data scaling",
+    "Deterministic repeat exposure",
+    "Augmentation",
+    "cRT",
+    "Regularization/HPO",
+    "Tier-A incremental held-group utility",
+    "Global-local replication"
+  ],
+  "prohibited_reruns": [
+    "Unchanged failed Prompt4 restricted LoRA",
+    "Old confirmation tuning",
+    "LOCKED reuse"
+  ],
+  "dataset_lineage": {
+    "historical_rows": 450,
+    "historical_rois": 181,
+    "available_rois": 205,
+    "remaining_rois": 24,
+    "shortfalls": [
+      {
+        "class_name": "plasma_cell",
+        "remaining_nuclei": 8,
+        "remaining_rois": 3,
+        "locked_required": 18
+      },
+      {
+        "class_name": "melanophage",
+        "remaining_nuclei": 11,
+        "remaining_rois": 5,
+        "locked_required": 18
+      },
+      {
+        "class_name": "neutrophil",
+        "remaining_nuclei": 0,
+        "remaining_rois": 0,
+        "locked_required": 18
+      },
+      {
+        "class_name": "epithelium",
+        "remaining_nuclei": 0,
+        "remaining_rois": 0,
+        "locked_required": 18
+      }
+    ]
+  },
+  "reused_validation": "Historical 150-nucleus confirmation is reused development evidence",
+  "known_limitations": [
+    "PATIENT-LEVEL INDEPENDENCE UNVERIFIED",
+    "Fresh ten-class LOCKED225 impossible from remaining ROI pool",
+    "Three local CV QA failures unresolved",
+    "CPU-only local torch"
+  ],
+  "next_required_input": "Additional historically unused annotated ROIs with adequate all-ten-class support, image paths, and strongest available patient/case/slide mapping; alternatively an explicit protocol amendment accepting development-only evaluation without claiming untouched LOCKED confirmation.",
+  "pending_work": [
+    "Resolve CV QA failure with mandatory patch protocol if needed",
+    "Complete raw historical evidence ingestion/ledgers",
+    "Admit independent x3 dataset",
+    "Execute stages A through J in order",
+    "Generate final report only at convergence",
+    "Append reports and verify content identity"
+  ],
+  "master_report_status": "Byte-preserving backup created; master not appended",
+  "continuity": "Resumable state saved; Claude/OpenClaw wall-clock mechanisms do not apply to this Codex session. No recurring automation requested or created."
+}

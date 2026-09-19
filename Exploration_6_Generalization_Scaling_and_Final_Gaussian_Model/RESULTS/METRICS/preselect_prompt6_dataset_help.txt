@@ -1,0 +1,22 @@
+usage: preselect_prompt6_dataset.py [-h] [--dataset-root DATASET_ROOT]
+                                    [--historical-rois HISTORICAL_ROIS]
+                                    [--out-dir OUT_DIR]
+                                    [--group-csv GROUP_CSV] [--seed SEED]
+                                    [--min-groups-per-split MIN_GROUPS_PER_SPLIT]
+
+CPU-only preselection for PUMA Prompt 6. Builds the full GT manifest, audits
+historical ROI overlap, preserves all unused ROIs as LOCKED_NATURAL, and
+creates group-disjoint D300/D600/D900 + DEV + Prompt6 confirmation.
+
+options:
+  -h, --help            show this help message and exit
+  --dataset-root DATASET_ROOT
+  --historical-rois HISTORICAL_ROIS
+                        Authoritative CSV/TXT/JSON historical ROI artifact;
+                        CSV requires roi column.
+  --out-dir OUT_DIR
+  --group-csv GROUP_CSV
+                        Optional roi→patient/case/slide/group CSV. Without it,
+                        grouping is ROI-level.
+  --seed SEED
+  --min-groups-per-split MIN_GROUPS_PER_SPLIT

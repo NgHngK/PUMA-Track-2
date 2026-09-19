@@ -1,0 +1,342 @@
+...................FF.F................................................. [ 97%]
+..                                                                       [100%]
+================================== FAILURES ===================================
+_______ test_internal_cv_preserves_identity_and_hides_external_holdouts _______
+
+tmp_path = WindowsPath('C:/Users/Hngk/AppData/Local/Temp/pytest-of-Hngk/pytest-0/test_internal_cv_preserves_ide0')
+
+    def test_internal_cv_preserves_identity_and_hides_external_holdouts(tmp_path: Path):
+        src = tmp_path / "master.csv"
+        write_manifest(src, _rows())
+        original = read_manifest(src, require_files=False)
+        original_hash = row_identity_sha256(original)
+        external_uids = {r["uid"] for r in original if r["split"] in {"dev", "locked"}}
+>       folds = create_internal_group_cv_manifests(src, tmp_path / "folds", n_splits=3, seed=1706)
+
+tests\test_cv_hpo.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+manifest = WindowsPath('C:/Users/Hngk/AppData/Local/Temp/pytest-of-Hngk/pytest-0/test_internal_cv_preserves_ide0/master.csv')
+out_dir = WindowsPath('C:/Users/Hngk/AppData/Local/Temp/pytest-of-Hngk/pytest-0/test_internal_cv_preserves_ide0/folds')
+n_splits = 3, seed = 1706, require_all_classes = True, require_files = False
+
+    def create_internal_group_cv_manifests(
+        manifest: str | Path,
+        out_dir: str | Path,
+        *,
+        n_splits: int = 3,
+        seed: int = 1706,
+        require_all_classes: bool = True,
+        require_files: bool = False,
+    ) -> list[dict[str, Any]]:
+        """Create grouped CV manifests *inside the original TRAIN split only*.
+    
+        The returned manifests preserve the exact original row order and sample identity,
+        which makes immutable Tier-A/UNI2 caches reusable through ``row_identity_sha256``.
+        Original DEV/CALIBRATION/LOCKED/TEST rows are relabelled ``predict`` so broad HPO
+        cannot access them through the ordinary train/dev runner.
+    
+        Parameters
+        ----------
+        manifest:
+            Prompt-6 master manifest containing at least a non-empty ``train`` split.
+        out_dir:
+            New/empty directory for fold manifests. Existing non-empty directories fail
+            closed to preserve immutable research history.
+        n_splits:
+            Number of grouped internal folds. Must be >=2 and no greater than the number
+            of unique TRAIN groups.
+        seed:
+            Random state used by StratifiedGroupKFold.
+        require_all_classes:
+            When true, every internal train and dev fold must contain all canonical
+            classes. This is recommended for the ten-class Prompt-6 HPO cohort.
+        require_files:
+            Whether manifest image paths must exist while constructing folds.
+        """
+        if n_splits < 2:
+            raise ValueError("n_splits must be >=2")
+        source_path = Path(manifest)
+        rows = read_manifest(source_path, require_files=require_files)
+        train_idx = np.asarray([i for i, r in enumerate(rows) if r["split"] == "train"], dtype=np.int64)
+        if train_idx.size == 0:
+            raise ValueError("source manifest has no TRAIN rows")
+    
+        train_groups = np.asarray([str(rows[int(i)]["group"]) for i in train_idx], dtype=object)
+        unique_groups = np.unique(train_groups)
+        if len(unique_groups) < n_splits:
+            raise ValueError(f"n_splits={n_splits} exceeds unique TRAIN groups={len(unique_groups)}")
+        y = np.asarray([int(rows[int(i)]["label"]) for i in train_idx], dtype=np.int64)
+        if (y < 0).any() or (y >= NUM_CLASSES).any():
+            raise ValueError("TRAIN contains labels outside the canonical ten-class ontology")
+    
+        out = Path(out_dir)
+        if out.exists() and any(out.iterdir()):
+            raise FileExistsError(f"CV manifest directory is not empty: {out}")
+        out.mkdir(parents=True, exist_ok=True)
+    
+        splitter = StratifiedGroupKFold(n_splits=n_splits, shuffle=True, random_state=seed)
+        folds: list[dict[str, Any]] = []
+        source_identity = row_identity_sha256(rows)
+        source_sha = sha256_file(source_path)
+        original_external_uids = {r["uid"] for r in rows if r["split"] in EXTERNAL_HOLDOUT_SPLITS}
+    
+        # X is intentionally a dummy array; only y/groups matter for this splitter.
+        X = np.zeros((len(train_idx), 1), dtype=np.float32)
+        for fold, (subtrain_pos, subdev_pos) in enumerate(splitter.split(X, y, groups=train_groups)):
+            subtrain_global = set(int(train_idx[int(p)]) for p in subtrain_pos)
+            subdev_global = set(int(train_idx[int(p)]) for p in subdev_pos)
+            if subtrain_global & subdev_global:
+                raise RuntimeError("internal CV row overlap")
+    
+            subtrain_groups = {str(rows[i]["group"]) for i in subtrain_global}
+            subdev_groups = {str(rows[i]["group"]) for i in subdev_global}
+            if subtrain_groups & subdev_groups:
+                raise RuntimeError("internal CV group leakage")
+    
+            fold_rows: list[dict] = []
+            for i, r in enumerate(rows):
+                rr = copy.deepcopy(r)
+                if i in subtrain_global:
+                    rr["split"] = "train"
+                elif i in subdev_global:
+                    rr["split"] = "dev"
+                else:
+                    # Original holdouts and any non-TRAIN rows are inaccessible to broad HPO.
+                    rr["split"] = "predict"
+                fold_rows.append(rr)
+    
+            if row_identity_sha256(fold_rows) != source_identity:
+                raise RuntimeError("internal CV construction changed ordered sample identity")
+            if any(r["uid"] in original_external_uids and r["split"] in {"train", "dev"} for r in fold_rows):
+                raise RuntimeError("external holdout row leaked into internal HPO")
+    
+            if require_all_classes:
+                expected = set(range(NUM_CLASSES))
+                missing_train = expected - _present_classes(fold_rows, "train")
+                missing_dev = expected - _present_classes(fold_rows, "dev")
+                if missing_train or missing_dev:
+>                   raise ValueError(
+                        f"fold {fold} missing canonical classes; train={sorted(missing_train)}, dev={sorted(missing_dev)}"
+                    )
+E                   ValueError: fold 0 missing canonical classes; train=[], dev=[8]
+
+src\puma_prompt6\cv.py:119: ValueError
+_____________ test_prepare_cv_hpo_generates_trial_x_fold_configs ______________
+
+tmp_path = WindowsPath('C:/Users/Hngk/AppData/Local/Temp/pytest-of-Hngk/pytest-0/test_prepare_cv_hpo_generates_0')
+
+    def test_prepare_cv_hpo_generates_trial_x_fold_configs(tmp_path: Path):
+        src = tmp_path / "master.csv"; write_manifest(src, _rows())
+        base = {
+            "experiment_id": "base",
+            "manifest": str(src),
+            "output_dir": str(tmp_path / "runs"),
+            "cached_features": str(tmp_path / "features.npy"),
+            "tier_a": str(tmp_path / "tier.npy"),
+            "device": "cpu",
+            "selection_metric": "macro_f1",
+            "optimizer": {"max_epochs": 2, "selection_mode": "early_stop"},
+        }
+        base_path = tmp_path / "base.json"; base_path.write_text(json.dumps(base), encoding="utf-8")
+        out = tmp_path / "cvhpo"
+>       subprocess.run([
+            sys.executable, "scripts/prepare_cv_hpo.py", "--base", str(base_path), "--out-dir", str(out),
+            "--stage", "optimizer", "--trials", "2", "--folds", "3", "--seed", "19"
+        ], check=True, cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True)
+
+tests\test_cv_hpo.py:74: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = True, timeout = None, check = True
+popenargs = (['C:\\Users\\Hngk\\AppData\\Local\\Programs\\Python\\Python310\\python.exe', 'scripts/prepare_cv_hpo.py', '--base', '...dir', 'C:\\Users\\Hngk\\AppData\\Local\\Temp\\pytest-of-Hngk\\pytest-0\\test_prepare_cv_hpo_generates_0\\cvhpo', ...],)
+kwargs = {'cwd': WindowsPath('C:/Users/Hngk/Documents/Codex/PUMA_STAGE2_PROMPT6/PUMA_STAGE2_PROMPT6_CODE'), 'text': True, 'stdout': -1, 'stderr': -1}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Users\\Hngk\\AppData\\Local\\Programs\\Python\\Python310\\python.exe', 'scripts/prepare_cv_hpo.py', '--base', 'C:\\Users\\Hngk\\AppData\\Local\\Temp\\pytest-of-Hngk\\pytest-0\\test_prepare_cv_hpo_generates_0\\base.json', '--out-dir', 'C:\\Users\\Hngk\\AppData\\Local\\Temp\\pytest-of-Hngk\\pytest-0\\test_prepare_cv_hpo_generates_0\\cvhpo', '--stage', 'optimizer', '--trials', '2', '--folds', '3', '--seed', '19']' returned non-zero exit status 1.
+
+..\..\..\..\AppData\Local\Programs\Python\Python310\lib\subprocess.py:526: CalledProcessError
+__________ test_cv_hpo_end_to_end_with_shared_identity_bound_caches ___________
+
+tmp_path = WindowsPath('C:/Users/Hngk/AppData/Local/Temp/pytest-of-Hngk/pytest-0/test_cv_hpo_end_to_end_with_sh0')
+
+    def test_cv_hpo_end_to_end_with_shared_identity_bound_caches(tmp_path: Path):
+        """Broad HPO folds may safely share one master cache without seeing external DEV/LOCKED."""
+        from puma_prompt6.utils import sha256_file
+        rows = _rows()
+        src = tmp_path / "master.csv"; write_manifest(src, rows)
+        rr = read_manifest(src, require_files=False)
+        rng = np.random.default_rng(7)
+        features = rng.normal(size=(len(rr), 1536)).astype(np.float32)
+        tier = rng.normal(size=(len(rr), 16)).astype(np.float32)
+        fp = tmp_path / "features.npy"; tp = tmp_path / "tier.npy"
+        np.save(fp, features); np.save(tp, tier)
+        identity = row_identity_sha256(rr)
+        fp.with_suffix(".json").write_text(json.dumps({
+            "kind": "cls", "shape": list(features.shape), "dtype": "float32",
+            "finite_verified": True, "manifest_sha256": sha256_file(src), "row_identity_sha256": identity,
+        }), encoding="utf-8")
+        tp.with_suffix(".json").write_text(json.dumps({
+            "shape": list(tier.shape), "dtype": "float32", "finite_verified": True,
+            "manifest_sha256": sha256_file(src), "row_identity_sha256": identity,
+        }), encoding="utf-8")
+        base = {
+            "experiment_id": "smoke",
+            "manifest": str(src), "output_dir": str(tmp_path / "runs"),
+            "cached_features": str(fp), "tier_a": str(tp), "device": "cpu", "num_workers": 0,
+            "selection_metric": "macro_f1",
+            "optimizer": {"max_epochs": 1, "patience": 1, "selection_mode": "early_stop", "batch_size": 32},
+        }
+        bp = tmp_path / "base.json"; bp.write_text(json.dumps(base), encoding="utf-8")
+        root = tmp_path / "cvhpo"
+        repo = Path(__file__).resolve().parents[1]
+>       subprocess.run([sys.executable, "scripts/prepare_cv_hpo.py", "--base", str(bp), "--out-dir", str(root), "--stage", "optimizer", "--trials", "1", "--folds", "3", "--seed", "11"], check=True, cwd=repo, capture_output=True, text=True)
+
+tests\test_cv_hpo.py:153: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = True, timeout = None, check = True
+popenargs = (['C:\\Users\\Hngk\\AppData\\Local\\Programs\\Python\\Python310\\python.exe', 'scripts/prepare_cv_hpo.py', '--base', '...dir', 'C:\\Users\\Hngk\\AppData\\Local\\Temp\\pytest-of-Hngk\\pytest-0\\test_cv_hpo_end_to_end_with_sh0\\cvhpo', ...],)
+kwargs = {'cwd': WindowsPath('C:/Users/Hngk/Documents/Codex/PUMA_STAGE2_PROMPT6/PUMA_STAGE2_PROMPT6_CODE'), 'text': True, 'stdout': -1, 'stderr': -1}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Users\\Hngk\\AppData\\Local\\Programs\\Python\\Python310\\python.exe', 'scripts/prepare_cv_hpo.py', '--base', 'C:\\Users\\Hngk\\AppData\\Local\\Temp\\pytest-of-Hngk\\pytest-0\\test_cv_hpo_end_to_end_with_sh0\\base.json', '--out-dir', 'C:\\Users\\Hngk\\AppData\\Local\\Temp\\pytest-of-Hngk\\pytest-0\\test_cv_hpo_end_to_end_with_sh0\\cvhpo', '--stage', 'optimizer', '--trials', '1', '--folds', '3', '--seed', '11']' returned non-zero exit status 1.
+
+..\..\..\..\AppData\Local\Programs\Python\Python310\lib\subprocess.py:526: CalledProcessError
+=========================== short test summary info ===========================
+FAILED tests/test_cv_hpo.py::test_internal_cv_preserves_identity_and_hides_external_holdouts
+FAILED tests/test_cv_hpo.py::test_prepare_cv_hpo_generates_trial_x_fold_configs
+FAILED tests/test_cv_hpo.py::test_cv_hpo_end_to_end_with_shared_identity_bound_caches
+3 failed, 71 passed in 41.03s

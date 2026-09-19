@@ -1,0 +1,119 @@
+{
+  "registered_utc": "2026-09-09T12:07:45.561157+00:00",
+  "stage_order": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J"
+  ],
+  "research_training_started": false,
+  "primary": "DEV fixed-ten ROI Macro-F1; semantic macro-F1 and per-class harm secondary, never conflate subset and complete-proposal evaluation",
+  "grouping": "ROI",
+  "seeds": [
+    17,
+    29,
+    43
+  ],
+  "promotion": {
+    "mean_paired_roi_delta_min": 0.003,
+    "positive_seeds_min": 2,
+    "roi_paired_bootstrap_samples": 2000,
+    "bootstrap_seed": 1706,
+    "confidence": 0.95,
+    "lower_confidence_bound_min": 0,
+    "max_mean_class_recall_loss": 0.1,
+    "max_generalization_gap_increase": 0.05,
+    "complexity_tie_break": "smaller model, then unchanged historical recipe"
+  },
+  "data_scaling": {
+    "sizes": [
+      300,
+      600,
+      900
+    ],
+    "epochs": 10,
+    "selection": "fixed_final",
+    "LR": 0.001,
+    "WD": 0.01,
+    "batch": 64,
+    "sampler": "inverse",
+    "loss": "CE",
+    "rank": 8,
+    "scheduler": "constant",
+    "comparison": "common DEV; three matched seeds; no endpoint retuning"
+  },
+  "augmentation": {
+    "arms": [
+      "AUG0 no augmentation raw parity",
+      "AUG1 geometry",
+      "AUG2 geometry+fixed H/E OD stain"
+    ],
+    "seeds": [
+      17,
+      29,
+      43
+    ],
+    "epochs": 10,
+    "control": "matched effective batch64, fixed final10; physical batch1 accumulation64 on CPU if memory requires",
+    "jitter": "GATED: no run unless empirical displacement distribution is verified and a distribution is preregistered"
+  },
+  "longtail": {
+    "arms": [
+      "inverse CE",
+      "natural CE",
+      "tempered alpha0.5 CE",
+      "cRT reset W/R freeze Ph/Pb"
+    ],
+    "prior_correction": "not reopened absent distinct evidence; no stacking"
+  },
+  "hpo": {
+    "location": "TRAIN only, 3 group-disjoint folds",
+    "trial_count_optimizer": 12,
+    "trial_count_regularization": 9,
+    "max_finalists": 2,
+    "search": "shipped seeded bounded config generator, no conversational per-trial retuning",
+    "seed": 1706,
+    "finalist_rule": "mean CV ROI-F1, class guard against matched control; ties prefer fewer parameters; at most two DEV finalists",
+    "maximum_epochs": 20,
+    "patience": 5
+  },
+  "tier_a": {
+    "arms": [
+      "on",
+      "off"
+    ],
+    "confounding": "TRAIN-only ROI/class descriptive association; held-group incremental utility decides retention"
+  },
+  "representation": {
+    "arms": [
+      "cls",
+      "gaussian sigma1.5",
+      "neighborhood radius1",
+      "exact fixed global-local"
+    ],
+    "settings": "matched stabilized training settings; no retuning pooling",
+    "scalar_mix": "not run by default"
+  },
+  "adaptation": {
+    "gate": "All specified Prompt6 G requirements; residual nonseparability must survive prior interventions",
+    "prior_exact_lora": "prohibited unchanged rerun"
+  },
+  "final": {
+    "three_seed": [
+      17,
+      29,
+      43
+    ],
+    "checkpoint_for_single_model": "seed17 fixed prospectively, not best seed; no ensemble",
+    "confirmation": "one event after full recipe freeze",
+    "natural": "one event after full recipe freeze; no class balancing; absent class recall/support-F1 not estimable; official fixed metrics separately",
+    "V17": "complete fixed Stage1 proposal population where feasible; verify upstream history separately"
+  },
+  "stopping": "No further architecture search after gated stages and reporting. Insufficient evidence retains prior model. CPU cost does not justify substituting cached finite augmentations for on-the-fly augmentation."
+}

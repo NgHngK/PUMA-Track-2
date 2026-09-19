@@ -1,0 +1,57 @@
+{
+  "status": "D_COMPLETE_REVIEW_REQUIRED",
+  "broad_hpo": {
+    "optimizer_trials": 12,
+    "regularization_trials": 9,
+    "folds": 3
+  },
+  "dev_finalists_run": 1,
+  "finalist_sources": [
+    {
+      "run_id": "p6_D_DEV_finalist_01",
+      "source_trial": "p6_D_control_optimizer_hpo_006"
+    }
+  ],
+  "dev_results": [
+    {
+      "run_id": "p6_D_DEV_finalist_01",
+      "roi_f1": 0.15108843537414968,
+      "baseline_roi_f1": 0.148937074829932,
+      "paired_roi_delta": 0.0021513605442176867,
+      "paired_roi_ci95": [
+        -0.016173469387755098,
+        0.021845238095238088
+      ],
+      "class_recall_delta": {
+        "tumor": 0.10344827586206906,
+        "lymphocyte": -0.1739130434782608,
+        "plasma_cell": -0.05555555555555555,
+        "histiocyte": 0.1111111111111111,
+        "melanophage": 0.11111111111111105,
+        "neutrophil": 0.05555555555555558,
+        "stroma": -0.1111111111111111,
+        "epithelium": 0.05555555555555558,
+        "endothelium": 0.16666666666666669,
+        "apoptosis": -0.16666666666666663
+      },
+      "class_harm": [
+        "lymphocyte",
+        "stroma",
+        "apoptosis"
+      ],
+      "gap_change": -0.11254021053611618,
+      "trainable_parameters": 27866,
+      "provisional_gate_pass": false,
+      "three_seed_gate": "DEFERRED_TO_STAGE_H"
+    }
+  ],
+  "provisional_selected_run": "p6_A_D900_s17",
+  "selection_interpretation": "Provisional only; three-seed confirmation is deferred to Stage H.",
+  "next_stage": "Stage E Tier-A audit using the provisionally stabilized recipe, after review.",
+  "holdouts_opened": false,
+  "environment": {
+    "gpu": "NVIDIA L4",
+    "torch": "2.11.0+cu128",
+    "python": "3.13.15"
+  }
+}

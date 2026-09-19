@@ -1,0 +1,11 @@
+{
+  "status": "PROSPECTIVE_CONFIGURATION_RESOLUTION_BEFORE_ANY_D_TRIAL",
+  "protocol_source": "PREREGISTERED_PROTOCOL.json",
+  "issue": "The preregistration fixes patience5, while the supplied HPO generator samples patience from2/4/6.",
+  "resolution": "Keep the prospectively fixed patience5 and maximum20 epochs in every resolved D trial. Use the shipped seeded generator for the remaining search dimensions. Record the generated and resolved configuration hashes; do not change training source.",
+  "trial_budget": {"optimizer": 12, "regularization": 9, "internal_folds": 3, "maximum_DEV_finalists": 2},
+  "fold_seed": 1706,
+  "training_recipe_dependency": "B augmentation and C sampling interpretation must be resolved before D training starts.",
+  "folds_preparation": "D900 TRAIN-only fold manifests may be prepared before B finishes because splitting depends only on the frozen training labels/groups, not model results. This does not launch HPO or select a candidate.",
+  "holdout_policy": "External DEV, prospective confirmation and natural holdout are excluded from broad HPO. No new holdout results opened."
+}

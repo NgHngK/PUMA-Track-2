@@ -1,0 +1,158 @@
+{
+  "status": "H_COMPLETE_RECIPE_FROZEN",
+  "candidate_sources": [
+    {
+      "seed": 17,
+      "run_id": "p6_F_gaussian_s17",
+      "root": "/content/drive/MyDrive/Research/PUMA/PUMA_STAGE2_COLAB/COLAB_RESULTS/EXPERIMENTS/p6_F_gaussian_s17",
+      "reused": true
+    },
+    {
+      "seed": 29,
+      "run_id": "p6_H_candidate_s29",
+      "root": "/content/drive/MyDrive/Research/PUMA/PUMA_STAGE2_COLAB/COLAB_RESULTS/EXPERIMENTS/p6_H_candidate_s29",
+      "reused": false
+    },
+    {
+      "seed": 43,
+      "run_id": "p6_H_candidate_s43",
+      "root": "/content/drive/MyDrive/Research/PUMA/PUMA_STAGE2_COLAB/COLAB_RESULTS/EXPERIMENTS/p6_H_candidate_s43",
+      "reused": false
+    }
+  ],
+  "comparison_vs_A_D900": {
+    "mean_paired_roi_delta": 0.028922902494331066,
+    "paired_roi_ci95": [
+      0.014916099773242632,
+      0.043809665532879814
+    ],
+    "positive_seeds": 3,
+    "class_recall_delta": {
+      "tumor": -0.017241379310344824,
+      "lymphocyte": -0.04347826086956519,
+      "plasma_cell": 0.14814814814814817,
+      "histiocyte": 0.018518518518518517,
+      "melanophage": 0.09259259259259256,
+      "neutrophil": 0.3148148148148148,
+      "stroma": 0.25925925925925924,
+      "epithelium": 0.05555555555555558,
+      "endothelium": 0.16666666666666666,
+      "apoptosis": 0.09259259259259262
+    },
+    "class_harm": [],
+    "mean_gap_change": -0.10671873368206093,
+    "promotion_gate_pass": true,
+    "per_seed": [
+      {
+        "seed": 17,
+        "candidate_roi_f1": 0.1810714285714286,
+        "baseline_roi_f1": 0.148937074829932,
+        "paired_roi_delta": 0.0321343537414966,
+        "gap_change": -0.11786801735020735
+      },
+      {
+        "seed": 29,
+        "candidate_roi_f1": 0.17720238095238094,
+        "baseline_roi_f1": 0.14661564625850337,
+        "paired_roi_delta": 0.03058673469387755,
+        "gap_change": -0.09766699345434787
+      },
+      {
+        "seed": 43,
+        "candidate_roi_f1": 0.1778061224489796,
+        "baseline_roi_f1": 0.15375850340136055,
+        "paired_roi_delta": 0.024047619047619047,
+        "gap_change": -0.10462119024162758
+      }
+    ]
+  },
+  "candidate_baseline_equivalent": false,
+  "selected_run": "p6_F_gaussian_s17",
+  "selected_root": "/content/drive/MyDrive/Research/PUMA/PUMA_STAGE2_COLAB/COLAB_RESULTS/EXPERIMENTS/p6_F_gaussian_s17",
+  "selected_config": {
+    "experiment_id": "p6_F_gaussian_s17",
+    "manifest": "/content/PUMA_STAGE2_RUNTIME/INPUTS/DATA_PRESELECTION/SELECTION/D900.csv",
+    "output_dir": "/content/drive/MyDrive/Research/PUMA/PUMA_STAGE2_COLAB/COLAB_RESULTS/EXPERIMENTS",
+    "uni2_weights": null,
+    "cached_features": null,
+    "cached_tokens": "/content/PUMA_STAGE2_RUNTIME/INPUTS/DATA_PRESELECTION/D900_tokens.npy",
+    "tier_a": "/content/PUMA_STAGE2_RUNTIME/INPUTS/DATA_PRESELECTION/D900_tierA.npy",
+    "fov": 96,
+    "seed": 17,
+    "device": "cuda",
+    "num_workers": 0,
+    "selection_metric": "roi_macro_f1",
+    "augmentation": {
+      "geometric": false,
+      "stain_mode": "none",
+      "stain_strength": 0.0,
+      "coordinate_jitter_sigma": 0.0,
+      "coordinate_jitter_clip": 0.0
+    },
+    "sampler": {
+      "mode": "inverse",
+      "alpha": 1.0,
+      "num_samples_multiplier": 1.0
+    },
+    "loss": {
+      "kind": "ce",
+      "tau": 0.0,
+      "label_smoothing": 0.0
+    },
+    "model": {
+      "representation": "gaussian",
+      "gaussian_sigma": 1.5,
+      "neighborhood_radius": 1,
+      "interaction_rank": 8,
+      "representation_dropout": 0.0,
+      "interaction_dropout": 0.0,
+      "tier_a_dropout": 0.0,
+      "use_tier_a": true,
+      "scalar_mix_init": 0.5
+    },
+    "optimizer": {
+      "lr": 0.001,
+      "weight_decay": 0.01,
+      "batch_size": 64,
+      "accumulation_steps": 1,
+      "max_epochs": 10,
+      "patience": 10,
+      "min_delta": 0.0001,
+      "scheduler": "constant",
+      "warmup_fraction": 0.05,
+      "min_lr_ratio": 0.1,
+      "grad_clip": 1.0,
+      "amp": false,
+      "decay_bias_and_vectors": true,
+      "selection_mode": "fixed_final"
+    },
+    "encoder": {
+      "adaptation": "frozen",
+      "allow_adaptation": false,
+      "adapter_lr": 1e-05,
+      "lora_rank": 4,
+      "lora_alpha": 8.0,
+      "last_blocks": 2
+    },
+    "decoupled": {
+      "enabled": false,
+      "retrain_epochs": 5,
+      "retrain_lr": 0.001,
+      "reset_classifier": true,
+      "sampler": {
+        "mode": "inverse",
+        "alpha": 1.0,
+        "num_samples_multiplier": 1.0
+      },
+      "loss": {
+        "kind": "ce",
+        "tau": 0.0,
+        "label_smoothing": 0.0
+      }
+    }
+  },
+  "disposition": "candidate retained",
+  "prospective_checkpoint_seed": 17,
+  "ensembling": false,
+  "holdouts_opened": false
+}

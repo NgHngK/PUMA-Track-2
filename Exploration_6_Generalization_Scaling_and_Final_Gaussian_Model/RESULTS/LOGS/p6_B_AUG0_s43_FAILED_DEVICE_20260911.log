@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "/content/PUMA_STAGE2_RUNTIME/CODE/scripts/run_experiment.py", line 15, in <module>
+    main()
+    ~~~~^^
+  File "/content/PUMA_STAGE2_RUNTIME/CODE/scripts/run_experiment.py", line 11, in main
+    cfg=ExperimentConfig.load(a.config);summary=run_experiment(cfg)
+                                                ~~~~~~~~~~~~~~^^^^^
+  File "/content/PUMA_STAGE2_RUNTIME/CODE/src/puma_prompt6/experiment.py", line 134, in run_experiment
+    er=train_one_epoch(model,train_loader,optimizer,criterion,device,cfg.optimizer.grad_clip,scheduler,encoder,cfg.optimizer.amp,cfg.optimizer.accumulation_steps)
+  File "/content/PUMA_STAGE2_RUNTIME/CODE/src/puma_prompt6/training.py", line 100, in train_one_epoch
+    z=_forward(model,batch,device,encoder);loss_sum=criterion(z,y,reduction="sum")
+                                                    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/content/PUMA_STAGE2_RUNTIME/CODE/src/puma_prompt6/losses.py", line 25, in forward
+    return F.cross_entropy(logits.float()+self.tau*self.log_prior,labels.long(),reduction=reduction,label_smoothing=self.cfg.label_smoothing)
+                           ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!

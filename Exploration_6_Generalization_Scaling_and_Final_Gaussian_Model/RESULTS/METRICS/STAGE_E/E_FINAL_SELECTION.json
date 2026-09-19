@@ -1,0 +1,123 @@
+{
+  "status": "E_COMPLETE",
+  "control_run": "p6_A_D900_s17",
+  "candidate_run": "p6_E_tierA_off_s17",
+  "candidate_reused": false,
+  "comparison": {
+    "run_id": "p6_E_tierA_off_s17",
+    "roi_f1": 0.136437074829932,
+    "baseline_roi_f1": 0.148937074829932,
+    "paired_roi_delta": -0.012499999999999997,
+    "paired_roi_ci95": [
+      -0.030001488095238095,
+      0.006964285714285715
+    ],
+    "class_recall_delta": {
+      "tumor": 0.017241379310344862,
+      "lymphocyte": -0.5217391304347826,
+      "plasma_cell": 0.0,
+      "histiocyte": 0.05555555555555558,
+      "melanophage": -0.05555555555555558,
+      "neutrophil": 0.0,
+      "stroma": -0.1111111111111111,
+      "epithelium": 0.11111111111111105,
+      "endothelium": 0.27777777777777773,
+      "apoptosis": 0.05555555555555558
+    },
+    "class_harm": [
+      "lymphocyte",
+      "stroma"
+    ],
+    "gap_change": -0.03311186472308364,
+    "trainable_parameters": 15370,
+    "provisional_gate_pass": false,
+    "three_seed_gate": "DEFERRED_TO_STAGE_H"
+  },
+  "tier_a_selected": true,
+  "selected_run": "p6_A_D900_s17",
+  "selected_root": "/content/drive/MyDrive/Research/PUMA/PUMA_STAGE2_COLAB/COLAB_RESULTS/EXPERIMENTS/p6_A_D900_s17",
+  "selected_config": {
+    "experiment_id": "p6_A_D900_s17",
+    "manifest": "/content/PUMA_STAGE2_RUNTIME/INPUTS/DATA_PRESELECTION/SELECTION/D900.csv",
+    "output_dir": "/content/drive/MyDrive/Research/PUMA/PUMA_STAGE2_COLAB/COLAB_RESULTS/EXPERIMENTS",
+    "uni2_weights": null,
+    "cached_features": "/content/PUMA_STAGE2_RUNTIME/INPUTS/DATA_PRESELECTION/D900_cls.npy",
+    "cached_tokens": null,
+    "tier_a": "/content/PUMA_STAGE2_RUNTIME/INPUTS/DATA_PRESELECTION/D900_tierA.npy",
+    "fov": 96,
+    "seed": 17,
+    "device": "cuda",
+    "num_workers": 0,
+    "selection_metric": "roi_macro_f1",
+    "augmentation": {
+      "geometric": false,
+      "stain_mode": "none",
+      "stain_strength": 0.0,
+      "coordinate_jitter_sigma": 0.0,
+      "coordinate_jitter_clip": 0.0
+    },
+    "sampler": {
+      "mode": "inverse",
+      "alpha": 1.0,
+      "num_samples_multiplier": 1.0
+    },
+    "loss": {
+      "kind": "ce",
+      "tau": 0.0,
+      "label_smoothing": 0.0
+    },
+    "model": {
+      "representation": "cls",
+      "gaussian_sigma": 1.5,
+      "neighborhood_radius": 1,
+      "interaction_rank": 8,
+      "representation_dropout": 0.0,
+      "interaction_dropout": 0.0,
+      "tier_a_dropout": 0.0,
+      "use_tier_a": true,
+      "scalar_mix_init": 0.5
+    },
+    "optimizer": {
+      "lr": 0.001,
+      "weight_decay": 0.01,
+      "batch_size": 64,
+      "accumulation_steps": 1,
+      "max_epochs": 10,
+      "patience": 10,
+      "min_delta": 0.0001,
+      "scheduler": "constant",
+      "warmup_fraction": 0.05,
+      "min_lr_ratio": 0.1,
+      "grad_clip": 1.0,
+      "amp": false,
+      "decay_bias_and_vectors": true,
+      "selection_mode": "fixed_final"
+    },
+    "encoder": {
+      "adaptation": "frozen",
+      "allow_adaptation": false,
+      "adapter_lr": 1e-05,
+      "lora_rank": 4,
+      "lora_alpha": 8.0,
+      "last_blocks": 2
+    },
+    "decoupled": {
+      "enabled": false,
+      "retrain_epochs": 5,
+      "retrain_lr": 0.001,
+      "reset_classifier": true,
+      "sampler": {
+        "mode": "inverse",
+        "alpha": 1.0,
+        "num_samples_multiplier": 1.0
+      },
+      "loss": {
+        "kind": "ce",
+        "tau": 0.0,
+        "label_smoothing": 0.0
+      }
+    }
+  },
+  "selection_note": "Tier-A removal is promoted only by the same one-seed paired ROI/class/gap gate; final three-seed confirmation remains Stage H.",
+  "holdouts_opened": false
+}

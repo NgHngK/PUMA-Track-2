@@ -1,0 +1,82 @@
+{
+  "experiment_id": "p6_D_selected_optimizer_regularization_hpo_007_cv1",
+  "manifest": "/content/PUMA_STAGE2_RUNTIME/INPUTS/HPO_FOLDS_D900/internal_cv_fold1.csv",
+  "output_dir": "/content/drive/MyDrive/Research/PUMA/PUMA_STAGE2_COLAB/COLAB_RESULTS/EXPERIMENTS",
+  "uni2_weights": null,
+  "cached_features": "/content/PUMA_STAGE2_RUNTIME/INPUTS/DATA_PRESELECTION/D900_cls.npy",
+  "cached_tokens": null,
+  "tier_a": "/content/PUMA_STAGE2_RUNTIME/INPUTS/DATA_PRESELECTION/D900_tierA.npy",
+  "fov": 96,
+  "seed": 17,
+  "device": "cuda",
+  "num_workers": 0,
+  "selection_metric": "roi_macro_f1",
+  "augmentation": {
+    "geometric": false,
+    "stain_mode": "none",
+    "stain_strength": 0.0,
+    "coordinate_jitter_sigma": 0.0,
+    "coordinate_jitter_clip": 0.0
+  },
+  "sampler": {
+    "mode": "inverse",
+    "alpha": 1.0,
+    "num_samples_multiplier": 1.0
+  },
+  "loss": {
+    "kind": "ce",
+    "tau": 0.0,
+    "label_smoothing": 0.05
+  },
+  "model": {
+    "representation": "cls",
+    "gaussian_sigma": 1.5,
+    "neighborhood_radius": 1,
+    "interaction_rank": 4,
+    "representation_dropout": 0.05,
+    "interaction_dropout": 0.1,
+    "tier_a_dropout": 0.0,
+    "use_tier_a": true,
+    "scalar_mix_init": 0.5
+  },
+  "optimizer": {
+    "lr": 0.0011837906634727241,
+    "weight_decay": 0.00011038815361429637,
+    "batch_size": 32,
+    "accumulation_steps": 1,
+    "max_epochs": 20,
+    "patience": 5,
+    "min_delta": 0.0001,
+    "scheduler": "cosine",
+    "warmup_fraction": 0.05,
+    "min_lr_ratio": 0.1,
+    "grad_clip": 1.0,
+    "amp": false,
+    "decay_bias_and_vectors": true,
+    "selection_mode": "early_stop"
+  },
+  "encoder": {
+    "adaptation": "frozen",
+    "allow_adaptation": false,
+    "adapter_lr": 1e-05,
+    "lora_rank": 4,
+    "lora_alpha": 8.0,
+    "last_blocks": 2
+  },
+  "decoupled": {
+    "enabled": false,
+    "retrain_epochs": 5,
+    "retrain_lr": 0.001,
+    "reset_classifier": true,
+    "sampler": {
+      "mode": "inverse",
+      "alpha": 1.0,
+      "num_samples_multiplier": 1.0
+    },
+    "loss": {
+      "kind": "ce",
+      "tau": 0.0,
+      "label_smoothing": 0.0
+    }
+  }
+}
